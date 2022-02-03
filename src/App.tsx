@@ -16,6 +16,7 @@ import NotificationArea from "./components/NotificationArea";
 import usePTxInitializer from "./hooks/usePTxInitializer";
 import BigNumber from "bignumber.js";
 import LandingPage from "./components/LandingPage";
+import PageNotFound from "./components/404";
 BigNumber.config({ DECIMAL_PLACES: 18, ROUNDING_MODE: BigNumber.ROUND_DOWN, EXPONENTIAL_AT: 18 });
 
 //import "./stars.css"
@@ -61,11 +62,12 @@ function App() {
             <Router>
               {location !== "/" ? <Navbar /> : null}
               <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/tradeX" element={<Swap />} />
+                <Route path="*" element={<LandingPage />} />
+                {/* <Route path="/tradeX" element={<Swap />} />
                 <Route path="/stakeX" element={<Stake />} />
                 <Route path="/stakeX/remove" element={<RemoveAmount />} />
-                <Route path="/stakeX/list" element={<LiquidityPosition />} />
+                <Route path="/stakeX/list" element={<LiquidityPosition />} /> */}
+                {/* <Route path="*" element={<LandingPage />} /> */}
               </Routes>
             </Router>
           )}
