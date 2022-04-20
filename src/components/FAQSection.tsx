@@ -18,8 +18,8 @@ export default function FAQSection() {
   ];
 
   return (
-    <div className="w-full rounded-xl p-4 mt-4 bg-black opacity-90" style={{ transition: "height 500ms" }}>
-      <button className="w-full text-left font-bold text-xl hover:bg-white rounded-lg hover:bg-opacity-10 p-2 flex justify-between items-center" onClick={() => setIsOpen(!isOpen)}>
+    <div className="w-full rounded-2xl p-2 bg-black opacity-90" style={{ transition: "height 500ms" }}>
+      <button className="w-full text-left font-bold text-sm hover:bg-white rounded-lg hover:bg-opacity-10 px-2 flex justify-between items-center" onClick={() => setIsOpen(!isOpen)}>
         FAQ {isOpen ? <BsChevronDown /> : <BsChevronRight />}
       </button>
       <Collapse isOpened={isOpen}>

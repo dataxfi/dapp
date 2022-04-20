@@ -68,7 +68,26 @@ export default function LiquidStake() {
               </button>
             </div>
           </div>
-          <div className=""></div>
+          <div className="bg-black opacity-90 py-2 px-4 rounded-2xl my-2 font-light text-xs">
+            <table className="w-full text-left">
+              <tr>
+                <th>Annual Percentage Rate</th>
+                <th className="text-right">~127.23413%</th>
+              </tr>{" "}
+              <tr>
+                <th>Unstaking Cooldown Period</th>
+                <th className="text-right">3 days</th>
+              </tr>{" "}
+              <tr>
+                <th>Exchange Rate</th>
+                <th className="text-right">1 XXX ≈ 1 XXX</th>
+              </tr>{" "}
+              <tr>
+                <th>Total Stakers</th>
+                <th className="text-right">3.4M</th>
+              </tr>
+            </table>
+          </div>
           <FAQSection />
         </div>
       </div>

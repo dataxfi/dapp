@@ -494,7 +494,7 @@ export default function Swap() {
       >
         <div className="sm:mx-4 mx-3">
           <div className="flex mt-6 w-full h-full items-center justify-center">
-            <div id="swapModal" className="lg:w-107 bg-black bg-opacity-90 rounded-2xl px-3 pb-3 hm-box">
+            <div id="swapModal" className="lg:w-107 bg-black bg-opacity-90 rounded-2xl px-2 pb-2 hm-box">
               <div className="flex justify-between relative">
                 <div className="grid grid-flow-col gap-2 items-center">
                   <div id="tradeSettingsBtn" onClick={() => setShowSettings(true)} className="hover:bg-primary-700 px-1.5 py-1.5 my-1 rounded-lg" role="button">

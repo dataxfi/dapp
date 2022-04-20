@@ -5,7 +5,7 @@ import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 export default function LSFAQItem({ QA }: { QA: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="rounded-xl bg-city-blue bg-opacity-30 my-2 hover:bg-opacity-50">
+    <div className="rounded-xl text-xs bg-city-blue bg-opacity-30 my-2 hover:bg-opacity-50">
       <button
         onClick={() => {
           setIsOpen(!isOpen);
