@@ -19,7 +19,7 @@ export default function Footer() {
   }, [web3]);
 
   return location !== "/" ? (
-    <footer className="pb-2 w-full hidden lg:block">
+    <footer className="py-2 w-full hidden lg:block">
       <div></div>
       <div className="flex flex-col text-center">
         <ul className="inline-flex text-2xl justify-center">
