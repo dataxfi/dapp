@@ -1,18 +1,20 @@
-import { DebounceInput } from "react-debounce-input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import BigNumber from "bignumber.js";
-import WrappedInput from "./WrappedInput";
 import FAQSection from "./FAQSection";
+import { GlobalContext } from "../context/GlobalState";
+import LSInput from "./LSInput";
 
 export default function LiquidStake() {
-  const [stakeAmt, setStakeAmt] = useState<BigNumber>(new BigNumber(0));
+  const { setToken1, setToken2, token2, token1, accountId, handleConnect } = useContext(GlobalContext);
   const [isStake, setIsStake] = useState<boolean>(true);
-  const [faqOpen, setFaqOpen] = useState<boolean>(false);
-  const [qsOpen, setQsOpen] = useState<number[]>([]);
 
   async function updateStakeAmt(event: any) {
     const val = event.target.value;
-    setStakeAmt(new BigNumber(val));
+    setToken1({ ...token1, value: new BigNumber(val) });
+  }
+
+  async function handleStake() {
+    window.alert("I'm a teapot!");
   }
 
   return (
@@ -42,16 +44,7 @@ export default function LiquidStake() {
                 >
                   <p className="text-xl">{isStake ? "Stake" : "Unstake"}</p>
                   <div className={`rounded-xl p-4 mt-2 border-[.5px] transition-colors ${isStake ? "border-indigo-600" : "border-blue-500"} flex items-center`}>
-                    <DebounceInput
-                      onChange={updateStakeAmt}
-                      className="rounded bg-black bg-opacity-0 w-full text-2xl"
-                      onWheel={(event: React.MouseEvent<HTMLInputElement>) => event.currentTarget.blur()}
-                      onKeyDown={(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}
-                      element={WrappedInput}
-                      type="number"
-                      value={stakeAmt.dp(5).toString()}
-                      debounceTimeout={500}
-                    />
+                    <LSInput updateFunction={updateStakeAmt} pos={1} />
                     <p>XXX</p>
                   </div>
                   <p className="mt-2">1 XXX ≈ 1 XXX</p>
@@ -63,23 +56,19 @@ export default function LiquidStake() {
                 >
                   <p className="text-xl">Receive</p>
                   <div className={`rounded-xl p-4 mt-2 border-[.5px] transition-colors ${!isStake ? "border-indigo-600" : "border-blue-500"} flex items-center`}>
-                    <DebounceInput
-                      onChange={updateStakeAmt}
-                      className="rounded bg-black bg-opacity-0 w-full text-2xl"
-                      onWheel={(event: React.MouseEvent<HTMLInputElement>) => event.currentTarget.blur()}
-                      onKeyDown={(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}
-                      element={WrappedInput}
-                      type="number"
-                      value={stakeAmt.dp(5).toString()}
-                      debounceTimeout={500}
-                    />
+                    <LSInput updateFunction={updateStakeAmt} pos={2} />
                     <p>XXX</p>
                   </div>
                 </div>
-                <button className="txButton mt-5">{isStake ? "Stake" : "Unstake"}</button>
+                <button
+                  onClick={accountId ? handleStake : () => handleConnect()}
+                  disabled={!accountId ? false : token1.value.gt(0) && token2.value.gt(0) ? false : true}
+                  className="txButton mt-5"
+                >
+                  {accountId ? (isStake ? "Stake" : "Unstake") : "Connect Wallet"}
+                </button>
               </div>
             </div>
-
             <FAQSection />
           </div>
         </div>
