@@ -3,6 +3,7 @@ import BigNumber from "bignumber.js";
 import FAQSection from "./FAQSection";
 import { GlobalContext } from "../context/GlobalState";
 import LSInput from "./LSInput";
+import MiddleContainer from "./MiddleContainer";
 
 export default function LiquidStake() {
   const { setToken1, setToken2, token2, token1, accountId, handleConnect } = useContext(GlobalContext);
@@ -18,61 +19,55 @@ export default function LiquidStake() {
   }
 
   return (
-    <div className="px-2 w-full h-full relative flex flex-grow">
-      <div className="absolute top-0 left-0 right-0 bottom-0">
-        <div className="flex w-full h-full justify-center items-center pt-24 overflow-scroll hm-hide-scrollbar">
-          <div className="w-full min-h-full max-w-[48rem]">
-            <div className="w-full h-full flex items-center justify-center text-2xl font-light ">
-              <div className={`border-2 font-thin ${isStake ? "border-indigo-600" : "border-blue-500"} p-[2px] mb-5 rounded-2xl bg-black bg-opacity-30 transition-colors`}>
-                <button onClick={() => setIsStake(true)} className={`px-8 py-1 rounded-xl ${isStake ? "bg-indigo-600" : "bg-transparent"}`}>
-                  Stake
-                </button>
-                <button
-                  onClick={() => {
-                    setIsStake(false);
-                  }}
-                  className={`px-8 py-1 rounded-xl ${!isStake ? "bg-city-blue" : "bg-transparent"}`}
-                >
-                  Unstake
-                </button>
-              </div>
+    <MiddleContainer>
+      <div className="flex w-full h-full justify-center items-center pt-24 overflow-scroll hm-hide-scrollbar">
+        <div className="w-full min-h-full max-w-[48rem]">
+          <div className="w-full h-full flex items-center justify-center text-2xl font-light ">
+            <div className={`border-2 font-thin ${isStake ? "border-indigo-600" : "border-blue-500"} p-[2px] mb-5 rounded-2xl bg-black bg-opacity-30 transition-colors`}>
+              <button onClick={() => setIsStake(true)} className={`px-8 py-1 rounded-xl ${isStake ? "bg-indigo-600" : "bg-transparent"}`}>
+                Stake
+              </button>
+              <button
+                onClick={() => {
+                  setIsStake(false);
+                }}
+                className={`px-8 py-1 rounded-xl ${!isStake ? "bg-city-blue" : "bg-transparent"}`}
+              >
+                Unstake
+              </button>
             </div>
-            <div className=" bg-black bg-opacity-90 rounded-xl p-2 text-white">
-              <div className="p-8">
-                <div
-                  className={`py-6 px-4 bg-gradient-to-b ${isStake ? "from-indigo-600 border-indigo-600" : "from-city-blue border-blue-500"}  to-transparent  border rounded-xl `}
-                >
-                  <p className="text-xl">{isStake ? "Stake" : "Unstake"}</p>
-                  <div className={`rounded-xl p-4 mt-2 border-[.5px] transition-colors ${isStake ? "border-indigo-600" : "border-blue-500"} flex items-center`}>
-                    <LSInput updateFunction={updateStakeAmt} pos={1} />
-                    <p>XXX</p>
-                  </div>
-                  <p className="mt-2">1 XXX ≈ 1 XXX</p>
-                </div>
-                <div
-                  className={`py-6 px-4 bg-gradient-to-b to-transparent border rounded-xl mt-4 ${
-                    !isStake ? "from-indigo-600 border-indigo-600" : "from-city-blue border-blue-500"
-                  }`}
-                >
-                  <p className="text-xl">Receive</p>
-                  <div className={`rounded-xl p-4 mt-2 border-[.5px] transition-colors ${!isStake ? "border-indigo-600" : "border-blue-500"} flex items-center`}>
-                    <LSInput updateFunction={updateStakeAmt} pos={2} />
-                    <p>XXX</p>
-                  </div>
-                </div>
-                <button
-                  onClick={accountId ? handleStake : () => handleConnect()}
-                  disabled={!accountId ? false : token1.value.gt(0) && token2.value.gt(0) ? false : true}
-                  className="txButton mt-5"
-                >
-                  {accountId ? (isStake ? "Stake" : "Unstake") : "Connect Wallet"}
-                </button>
-              </div>
-            </div>
-            <FAQSection />
           </div>
+          <div className=" bg-black bg-opacity-90 rounded-xl p-2 text-white">
+            <div className="p-8">
+              <div className={`py-6 px-4 bg-gradient-to-b ${isStake ? "from-indigo-600 border-indigo-600" : "from-city-blue border-blue-500"}  to-transparent  border rounded-xl `}>
+                <p className="text-xl">{isStake ? "Stake" : "Unstake"}</p>
+                <div className={`rounded-xl p-4 mt-2 border-[.5px] transition-colors ${isStake ? "border-indigo-600" : "border-blue-500"} flex items-center`}>
+                  <LSInput updateFunction={updateStakeAmt} pos={1} />
+                  <p>XXX</p>
+                </div>
+                <p className="mt-2">1 XXX ≈ 1 XXX</p>
+              </div>
+              <div
+                className={`py-6 px-4 bg-gradient-to-b to-transparent border rounded-xl mt-4 ${!isStake ? "from-indigo-600 border-indigo-600" : "from-city-blue border-blue-500"}`}
+              >
+                <p className="text-xl">Receive</p>
+                <div className={`rounded-xl p-4 mt-2 border-[.5px] transition-colors ${!isStake ? "border-indigo-600" : "border-blue-500"} flex items-center`}>
+                  <LSInput updateFunction={updateStakeAmt} pos={2} />
+                  <p>XXX</p>
+                </div>
+              </div>
+              <button
+                onClick={accountId ? handleStake : () => handleConnect()}
+                disabled={!accountId ? false : token1.value.gt(0) && token2.value.gt(0) ? false : true}
+                className="txButton mt-5"
+              >
+                {accountId ? (isStake ? "Stake" : "Unstake") : "Connect Wallet"}
+              </button>
+            </div>
+          </div>
+          <FAQSection />
         </div>
       </div>
-    </div>
+    </MiddleContainer>
   );
 }
