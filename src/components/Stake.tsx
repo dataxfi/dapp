@@ -281,7 +281,7 @@ export default function Stake() {
       >
         <div className="flex h-full w-full items-center justify-center">
           <div className="lg:mx-auto sm:mx-4 mx-3">
-            <div id="stakeModal" className="lg:w-107  bg-black bg-opacity-90 rounded-lg p-3 hm-box">
+            <div id="stakeModal" className="lg:w-107  bg-black bg-opacity-90 rounded-2xl p-3 hm-box">
               <TokenSelect max={maxStakeAmt} otherToken={"OCEAN"} pos={2} setToken={setToken2} token={token2} updateNum={() => {}} />
               <div className="px-4 relative mt-6 mb-10">
                 <div className="rounded-full border-black border-4 absolute -top-7 bg-trade-darkBlue w-12 h-12 flex items-center justify-center swap-center">
