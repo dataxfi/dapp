@@ -168,3 +168,11 @@ html:empty {
   transition: height 300ms;
 }
 
+.cityDGrad {
+  @apply bg-gradient-to-b from-[rgba(59,123,191,0.5)] to-transparent
+}
+
+.purpleDGrad {
+  @apply bg-gradient-to-b from-[rgba(80,72,229,0.5)] to-transparent
+
+}
