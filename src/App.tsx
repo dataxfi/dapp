@@ -13,6 +13,7 @@ import WatchLocation from "./components/WatchLocation";
 import CookiesModal from "./components/CookiesModal";
 import ConfirmModal from "./components/ConfirmModal";
 import useTxHistory from "./hooks/useTxHistory";
+import LiquidStake from "./components/LiquidStake";
 import LandingPage from "./components/LandingPage";
 import TokenModal from "./components/TokenModal";
 import BigNumber from "bignumber.js";
@@ -49,16 +50,10 @@ function App() {
     <div className="w-full h-full relative">
       <div
         className={`w-full h-full ${blurBG ? "blur-xs" : "blur-none"} ${
-          bgOff
-            ? ""
-            : location === "/trade"
-            ? "lg:absolute lg:bg-dataXtrade lg:bg-cover lg:bg-top"
-            : location !== "/"
-            ? "lg:absolute lg:bg-dataXstake lg:bg-cover lg:bg-bottom"
-            : ""
+          bgOff ? "" : location === "/trade" ? "lg:bg-dataXtrade lg:bg-cover lg:bg-top" : location !== "/" ? "lg:bg-dataXstake lg:bg-cover lg:bg-bottom" : ""
         }`}
       >
-        <div className={`min-h-full relative overflow-hidden w-full ${blurBG ? "bg-black bg-opacity-40" : ""}`}>
+        <div className={`min-h-full flex flex-col justify-between overflow-hidden w-full ${blurBG ? "bg-black bg-opacity-40" : ""}`}>
           {unsupportedNet ? (
             <UnsupportedNetwork />
           ) : (
@@ -71,11 +66,12 @@ function App() {
                 <Route path="/stake" element={<Stake />} />
                 <Route path="/stake/remove" element={<Unstake />} />
                 <Route path="/stake/list" element={<LiquidityPosition />} />
+                <Route path="/stake/liquid" element={<LiquidStake />} />
               </Routes>
             </Router>
           )}
+          <Footer />
         </div>
-        <Footer />
       </div>
       <Snackbar />
       <UnlockTokenModal />

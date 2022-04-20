@@ -38,7 +38,7 @@ const MobileNavbar = ({
   }, [accountId]);
 
   return (
-    <header id="mobileNavbar" className="flex flex-col">
+    <header id="mobileNavbar" className="flex flex-col lg:hidden">
       <div className={`flex lg:hidden bg-black ${bgOff ? "bg-opacity-0" : "bg-opacity-75"}  justify-between items-center py-2 border-gray-800 pr-4`}>
         <div className="flex flex-row justify-start ml-4">
           <Link to={"/"} className="lg:w-auto font-spectral text-3xl">
@@ -70,13 +70,13 @@ const MobileNavbar = ({
       </div>
       <div
         className={`w-full bg-black bg-opacity-75 z-10  mb-5 absolute top-0 transform${
-          menuVisible ? " translate-y-18" : " -translate-y-19"
+          menuVisible ? " translate-y-3/4" : " -translate-y-full"
         } transition duration-1000 border-t border-b lg:-translate-y-19`}
       >
         {links.map((link, idx) => {
           return (
             <Link onClick={() => toggleMenu(false)} to={link.link} className="hm-link product" key={`link${idx}`}>
-              <div key={idx} className="py-1.5 px-8 hover:bg-opacity-100">
+              <div key={idx} className="py-1.5 px-8 hover:bg-white hover:bg-opacity-10">
                 {link.name}
               </div>
             </Link>
@@ -97,7 +97,7 @@ const MobileNavbar = ({
               <button
                 id={`${accountId ? "m-view-txs-btn" : "m-wallet-button"}`}
                 onClick={() => handleModalOrConnect()}
-                className={`hm-btn text-xs ml-2 ${accountId ? "px-1" : ""} py-1 bg-black rounded`}
+                className={`hm-btn text-xs ml-2  px-1 ${accountId ? "px-1" : ""} py-1 bg-black rounded`}
               >
                 {accountId ? `${truncateId()}` : "Connect wallet"}
               </button>

@@ -51,7 +51,7 @@ export default function LiquidityPosition() {
               />
             </div>
           ) : (
-            <ul className={`${updatePool ? " md:mt-1" : "md:mt-5"} pr-3 pl-3 overflow-scroll hm-hide-scrollbar`}>
+            <ul className={`mt-5 pr-3 pl-3 overflow-scroll hm-hide-scrollbar`}>
               {allStakedPools?.map((pool: ILiquidityPosition, index: number) => (
                 <LiquidityPositionItem singleLiqPosItem={pool} index={index} />
               ))}

@@ -20,8 +20,8 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-input:focus{
-  @apply border-none
+input:focus, textarea:focus{
+  @apply border-none outline-none;
 }
 
 body,
@@ -52,7 +52,7 @@ html:empty {
 }
 
 .center {
-  @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
 
 .btn-dark {
@@ -162,5 +162,9 @@ html:empty {
 
 .mobileBgPosition {
   background-position: bottom left 5%;
+}
+
+.ReactCollapse--collapse {
+  transition: height 300ms;
 }
 

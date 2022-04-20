@@ -19,7 +19,8 @@ export default function Footer() {
   }, [web3]);
 
   return location !== "/" ? (
-    <footer className="absolute bottom-0 pb-2 w-full mt-5 hidden lg:block">
+    <footer className="pb-2 w-full hidden lg:block">
+      <div></div>
       <div className="flex flex-col text-center">
         <ul className="inline-flex text-2xl justify-center">
           <SocialLinkIcons effect="color" />

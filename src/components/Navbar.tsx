@@ -6,6 +6,7 @@ import { GlobalContext } from "../context/GlobalState";
 const text = {
   T_SWAP: "Trade",
   T_STAKE: "Stake",
+  T_LStake: "Liquid Staking",
   T_CONNECT_WALLET: "Connect to a wallet",
 };
 
@@ -14,6 +15,7 @@ const Navbar = () => {
   const links = [
     { name: text.T_SWAP, link: "/trade" },
     { name: text.T_STAKE, link: "/stake" },
+    {name: text.T_LStake, link: "/stake/liquid"}
   ];
 
   const { buttonText, config, chainId, accountId, setShowTxHistoryModal, handleConnect, setBlurBG, location } = useContext(GlobalContext);
@@ -48,7 +50,7 @@ const Navbar = () => {
   }
 
   return location !== "/" ? (
-    <nav className="z-20 absolute top-0 w-full">
+    <nav className="w-full">
       {/* Separating the UI logic because figuring out code reuse here will take more time. 
             i.e. It's not a simple cascade of columns to rows. There is a toggle and the connect to wallet 
             button is at the bottom */}
