@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import PendingTxsIndicator from "./PendingTxsIndicator";
 import { INavText } from "../utils/types";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const MobileNavbar = ({
   links,
@@ -68,36 +69,34 @@ const MobileNavbar = ({
           </div>
         </div>
       </div>
-      <div
-        className={`w-full bg-black bg-opacity-75 z-10  mb-5 absolute top-0 transform${
-          menuVisible ? " translate-y-3/4" : " -translate-y-full"
-        } transition duration-1000 border-t border-b lg:-translate-y-19`}
-      >
-        {links.map((link, idx) => {
-          return (
-            <Link onClick={() => toggleMenu(false)} to={link.link} className="hm-link product" key={`link${idx}`}>
-              <div key={idx} className="py-1.5 px-8 hover:bg-white hover:bg-opacity-10">
-                {link.name}
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+      <OutsideClickHandler onOutsideClick={()=>{setMenuVisible(false)}}>
+        <div
+          className={`w-full bg-black bg-opacity-75 z-10  mb-5 absolute top-0 transform${
+            menuVisible ? " translate-y-3/4" : " -translate-y-full"
+          } transition duration-1000 border-t border-b lg:-translate-y-19`}
+        >
+          {links.map((link, idx) => {
+            return (
+              <Link onClick={() => toggleMenu(false)} to={link.link} className="hm-link product" key={`link${idx}`}>
+                <div key={idx} className="py-1.5 px-8 hover:bg-white hover:bg-opacity-10">
+                  {link.name}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </OutsideClickHandler>
 
-      <div
-        className={`fixed bottom-0 left-0 w-full py-2 lg:hidden flex justify-center mobileGrad transform ${
-          walletBtnVis ? "" : "translate-y-12"
-        } transition duration-1000 z-10`}
-      >
+      <div className={`fixed bottom-0 left-0 w-full py-2 lg:hidden flex justify-center mobileGrad transform ${walletBtnVis ? "" : "translate-y-12"} transition duration-1000 z-10`}>
         <div className="flex flex-row w-full justify-between px-3 items-center">
           <div className="flex flex-row justify-center align-middle  w-full ">
-            <div className={`flex flex-row bg-primary-900 ${accountId ? "pl-2" : ""}  pr-1 py-1 rounded-lg`}>
+            <div className={`flex flex-row bg-primary-900 ${accountId ? "pl-2" : ""}  px-1 py-1 rounded-lg`}>
               {" "}
               <div className="text-xs self-center rounded-l-lg">{accountId ? <span>{network}</span> : null}</div>
               <button
                 id={`${accountId ? "m-view-txs-btn" : "m-wallet-button"}`}
                 onClick={() => handleModalOrConnect()}
-                className={`hm-btn text-xs ml-2  px-1 ${accountId ? "px-1" : ""} py-1 bg-black rounded`}
+                className={`hm-btn text-xs px-1 ${accountId ? "ml-2 " : ""} py-1 bg-black rounded`}
               >
                 {accountId ? `${truncateId()}` : "Connect wallet"}
               </button>

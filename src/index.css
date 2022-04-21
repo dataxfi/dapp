@@ -154,6 +154,10 @@ html:empty {
   background: linear-gradient(90deg, rgba(49, 59, 101, 1) 0%, rgba(58, 123, 191, 1) 100%);
 }
 
+.modalSelectBg {
+  @apply bg-city-blue bg-opacity-30;
+}
+
 .txButton {
   @apply p-2 rounded-xl w-full relative;
   background-image: rgb(10, 69, 110);
