@@ -21,10 +21,10 @@ const DesktopNavbar = ({
   const { accountId, buttonText, bgOff } = useContext(GlobalContext);
 
   return (
-    <header id="desktopNavBar" className={`lg:flex flex-col bg-black ${bgOff ? "bg-opacity-0" : "bg-opacity-25"} justify-between items-center p-2 border-gray-800 hidden`}>
-      <div className="flex justify-between w-full pl-4 pr-2">
+    <header id="desktopNavBar" className={`hidden lg:flex flex-col headerGrad justify-between items-center py-1 pr-2`}>
+      <div className="flex justify-between w-full ">
         <div className="grid grid-flow-col gap-8 items-center  ">
-          <Link to={"/"} className="w-1/3 lg:w-auto font-spectral text-3xl">
+          <Link to={"/"} className="w-1/3 lg:w-auto font-spectral text-3xl logoGrad pl-4">
             Datapolis
             <div className="px-2">
               <div className="w-full h-2px bg-yellow">

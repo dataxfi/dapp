@@ -39,7 +39,7 @@ const MobileNavbar = ({
 
   return (
     <header id="mobileNavbar" className="flex flex-col lg:hidden">
-      <div className={`flex lg:hidden bg-black ${bgOff ? "bg-opacity-0" : "bg-opacity-75"}  justify-between items-center py-2 border-gray-800 pr-4`}>
+      <div className={`flex lg:hidden headerGrad  justify-between items-center py-2 border-gray-800 pr-4`}>
         <div className="flex flex-row justify-start ml-4">
           <Link to={"/"} className="lg:w-auto font-spectral text-3xl">
             Datapolis
@@ -85,7 +85,7 @@ const MobileNavbar = ({
       </div>
 
       <div
-        className={`fixed bottom-0 left-0 w-full py-2 lg:hidden flex justify-center bg-background opacity-95 transform ${
+        className={`fixed bottom-0 left-0 w-full py-2 lg:hidden flex justify-center mobileGrad transform ${
           walletBtnVis ? "" : "translate-y-12"
         } transition duration-1000 z-10`}
       >
@@ -103,13 +103,6 @@ const MobileNavbar = ({
               </button>
             </div>
           </div>
-
-          {/* <MdClose
-            onClick={() => setWalletBtnVis(false)}
-            color="#ccc"
-            size="28"
-            className="mt-1"
-          /> */}
         </div>
       </div>
     </header>

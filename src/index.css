@@ -20,7 +20,8 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-input:focus, textarea:focus{
+input:focus,
+textarea:focus {
   @apply border-none outline-none;
 }
 
@@ -115,8 +116,28 @@ html:empty {
   text-shadow: 2px 2px 4px black;
 }
 
-.modalSelectBg {
-  @apply bg-city-blue bg-opacity-30;
+.headerGrad {
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(180deg, rgba(0,0,0,0.7539216370141807) 0%, rgba(0,0,0,0.591456651019783) 42%, rgba(0,0,0,0) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0,0,0,0.7539216370141807) 0%, rgba(0,0,0,0.591456651019783) 42%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.7539216370141807) 0%, rgba(0,0,0,0.591456651019783) 42%, rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1); 
+}
+
+.mobileGrad{
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(0deg, rgba(0,0,0,0.7539216370141807) 0%, rgba(0,0,0,0.591456651019783) 30%, rgba(0,0,0,0) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.7539216370141807) 0%, rgba(0,0,0,0.591456651019783) 30%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(0deg, rgba(0,0,0,0.7539216370141807) 0%, rgba(0,0,0,0.591456651019783) 30%, rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1); 
+}
+
+.logoGrad{
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(135deg, rgba(0,0,0,0.9528011888349089) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
+  background: -webkit-linear-gradient(135deg, rgba(0,0,0,0.9528011888349089) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(135deg, rgba(0,0,0,0.9528011888349089) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);   
 }
 
 .homeButton {
@@ -134,14 +155,14 @@ html:empty {
 }
 
 .txButton {
-  @apply p-2 rounded-lg w-full relative;
+  @apply p-2 rounded-xl w-full relative;
   background-image: rgb(10, 69, 110);
   background-image: linear-gradient(90deg, rgba(10, 69, 110, 1) 0%, rgba(26, 38, 70, 1) 100%);
   z-index: 1;
 }
 
 .txButton::before {
-  @apply absolute top-0 right-0 bottom-0 left-0 opacity-0 rounded-lg;
+  @apply absolute top-0 right-0 bottom-0 left-0 opacity-0 rounded-xl;
   content: "";
   background-image: rgb(49, 59, 101);
   background-image: linear-gradient(90deg, rgba(49, 59, 101, 1) 0%, rgba(58, 123, 191, 1) 100%);
@@ -169,10 +190,9 @@ html:empty {
 }
 
 .cityDGrad {
-  @apply bg-gradient-to-b from-[rgba(59,123,191,0.5)] to-transparent
+  @apply bg-gradient-to-b from-[rgba(59,123,191,0.5)] to-transparent;
 }
 
 .purpleDGrad {
-  @apply bg-gradient-to-b from-[rgba(80,72,229,0.5)] to-transparent
-
+  @apply bg-gradient-to-b from-[rgba(80,72,229,0.5)] to-transparent;
 }

@@ -135,7 +135,7 @@ export default function TokenSelect({
         ) : (
           <div className="col-span-3 mt-3 md:mt-0 ">
             <div className="h-full w-full rounded-lg bg-opacity-100 text-3xl p-1 flex items-center">
-              <div className="flex justify-between items-center bg-black bg-opacity-70 p-1 rounded-lg">
+              <div className="flex justify-between items-center bg-black bg-opacity-70  px-2 py-1 w-full rounded-lg">
                 <DebounceInput
                   id={`token${pos}-input`}
                   key={`token${pos}-input`}

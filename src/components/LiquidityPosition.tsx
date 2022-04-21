@@ -28,7 +28,7 @@ export default function LiquidityPosition() {
 
   return (
     <MiddleContainer>
-      <div className="flex flex-col justify-center h-full">
+      <div className="flex flex-col justify-center h-full p-2">
         <div id="lpModal" className="bg-black bg-opacity-90 w-full lg:w-107 p-2 max-h-full rounded-2xl px-3 m-auto flex flex-col justify-center">
           <div className="flex flex-row w-full m-auto">
             <div className="w-full flex rounded-lg justify-between">

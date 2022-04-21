@@ -21,7 +21,7 @@ export default function LiquidStake() {
 
   return (
     <MiddleContainer>
-      <div className="flex w-full h-full justify-center items-center overflow-scroll hm-hide-scrollbar">
+      <div className="flex w-full h-full justify-center items-center overflow-scroll hm-hide-scrollbar p-2">
         <div className="w-full min-h-full max-w-[34rem] flex flex-col m-auto" style={{justifyContent: "safe center"}}>
           <div className="bg-black bg-opacity-90 rounded-2xl p-2 text-white">
             <div className={`p-4 ${isStake ? "purpleDGrad" : "cityDGrad"} rounded-xl `}>
