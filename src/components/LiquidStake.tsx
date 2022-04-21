@@ -21,13 +21,13 @@ export default function LiquidStake() {
 
   return (
     <MiddleContainer>
-      <div className="flex w-full h-full justify-center items-center pt-24 overflow-scroll hm-hide-scrollbar">
-        <div className="w-full min-h-full max-w-[34rem]">
+      <div className="flex w-full h-full justify-center items-center overflow-scroll hm-hide-scrollbar">
+        <div className="w-full min-h-full max-w-[34rem] flex flex-col m-auto" style={{justifyContent: "safe center"}}>
           <div className="bg-black bg-opacity-90 rounded-2xl p-2 text-white">
             <div className={`p-4 ${isStake ? "purpleDGrad" : "cityDGrad"} rounded-xl `}>
               <div className="flex items-center justify-start">
                 <div className={`border-2 font-thin ${borderColor} p-[2px] mb-1 rounded-2xl bg-black bg-opacity-30 transition-colors`}>
-                  <button onClick={() => setIsStake(true)} className={`px-8 rounded-xl ${isStake ? "bg-indigo-500" : "bg-transparent"}`}>
+                  <button onClick={() => setIsStake(true)} className={`px-5 rounded-xl ${isStake ? "bg-indigo-500" : "bg-transparent"}`}>
                     Stake
                   </button>
                   <button

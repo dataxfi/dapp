@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Collapse } from "react-collapse";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
-export default function LSFAQItem({ QA }: { QA: string[] }) {
+export default function LSFAQItem({ QA, FAQOpen }: { QA: string[]; FAQOpen: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!FAQOpen) setIsOpen(false);
+  }, [FAQOpen]);
+
   return (
     <div className="rounded-xl text-xs bg-city-blue bg-opacity-30 mt-2 hover:bg-opacity-50">
       <button
@@ -12,11 +17,11 @@ export default function LSFAQItem({ QA }: { QA: string[] }) {
         }}
         className="text-left w-full font-semibold p-4 flex justify-between items-center"
       >
-        {QA[0]}{isOpen ? <BsChevronDown /> : <BsChevronRight />}
+        {QA[0]}
+        {isOpen ? <BsChevronDown /> : <BsChevronRight />}
       </button>
       <Collapse isOpened={isOpen}>
         <p className="p-2">{QA[1]}</p>
-        
       </Collapse>
     </div>
   );
