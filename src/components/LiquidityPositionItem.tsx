@@ -22,7 +22,7 @@ function LiquidityPositionItem({ singleLiqPosItem, index }: { singleLiqPosItem: 
       <div className="w-full mx-auto z-0">
         <div
           onClick={() => setVisible(!visible)}
-          className={`flex justify-between p-2 transition-colors duration-500 ${visible ? "rounded-t-lg" : "rounded-lg "} ${
+          className={`flex justify-between p-2 transition-colors duration-500 ${visible ? "rounded-t-xl" : "rounded-xl "} ${
             importPool ? "bg-city-blue bg-opacity-10" : "modalSelectBg bg-opacity-75"
           }  select-none `}
           role="button"
@@ -40,9 +40,9 @@ function LiquidityPositionItem({ singleLiqPosItem, index }: { singleLiqPosItem: 
         <Collapse isOpened={visible}>
             <div
               id={`${token1Info.symbol}-lp-info`}
-              className={`p-2 transition-colors duration-500  ${importPool ? "bg-city-blue bg-opacity-10" : "modalSelectBg bg-opacity-75"} rounded-b-lg mb-2`}
+              className={`p-2 transition-colors duration-500  ${importPool ? "bg-city-blue bg-opacity-10" : "modalSelectBg bg-opacity-75"} rounded-b-xl mb-2`}
             >
-              <div className="py-2 px-4 bg-black bg-opacity-70 rounded-lg">
+              <div className="py-2 px-4 bg-black bg-opacity-70 rounded-xl">
                 <div className="grid grid-cols-2 justify-between">
                   <div>
                     <p id="totalSharesTitle" className="text-gray-300 text-sm">
@@ -93,24 +93,24 @@ function LiquidityPositionItem({ singleLiqPosItem, index }: { singleLiqPosItem: 
                 </div>
               </div>
               <div className="flex mt-2">
-                <Link id="lp-add-link" key="stake" to={`/stake?pool=${address}`} className="modalButton rounded p-2px w-1/2 text-center mr-1">
-                  <div className="bg-black w-full h-full rounded p-2px">Add</div>
+                <Link id="lp-add-link" key="stake" to={`/stake?pool=${address}`} className="modalButton rounded-xl p-2px w-1/2 text-center mr-1">
+                  <div className="bg-black w-full h-full rounded-xl p-2px">Add</div>
                 </Link>
                 <Link
                   id="lp-remove-link"
                   key="removeStake"
                   to={`/stake/remove?pool=${address}`}
-                  className={`ml-1 ${
+                  className={`ml-1 rounded-xl p-2px w-1/2 modalButton text-center ${
                     Number(shares) === 0
-                      ? "modalButton cursor-not-allowed pointer-events-none rounded p-2px w-1/2 text-center text-gray-500"
-                      : "modalButton rounded p-2px w-1/2 text-center"
+                      ? "cursor-not-allowed pointer-events-none text-gray-500"
+                      : ""
                   } `}
                   onClick={() => {
                     console.log("Exact user shares", shares);
                     if (Number(shares) > 0) setSingleLiquidityPos(singleLiqPosItem);
                   }}
                 >
-                  <div className="bg-black w-full h-full rounded p-2px">Remove</div>
+                  <div className="bg-black w-full h-full rounded-xl p-2px">Remove</div>
                 </Link>
               </div>
             </div>

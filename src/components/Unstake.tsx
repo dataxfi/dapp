@@ -15,6 +15,7 @@ import TokenSelect from "./TokenSelect";
 import { IMaxUnstake } from "@dataxfi/datax.js";
 import MaxToolTip from "./MaxToolTip";
 import { transactionTypeGA } from "../context/Analytics";
+import MiddleContainer from "./MiddleContainer";
 
 export default function Unstake() {
   const {
@@ -291,21 +292,21 @@ export default function Unstake() {
   }
 
   return (
-    <div className="absolute top-0 w-full h-full">
+    <MiddleContainer>
       {!accountId ? (
         <UserMessage message="Connect your wallet to continue." pulse={false} container={true} />
       ) : token2.info ? (
-        <div className="flex w-full h-full items-center pt-16 px-2">
+        <div className="flex w-full h-full items-center px-2">
           <div id="removeStakeModal" className="w-107 mx-auto">
-            <div className="mx-auto bg-black opacity-90 w-full rounded-lg p-3 hm-box">
-              <div className="flex flex-row pb-2 justify-between">
-                <div className="flex flex-row">
+            <div className="mx-auto bg-black opacity-90 w-full rounded-2xl p-3 hm-box">
+              <div className="flex pb-2 justify-between">
+                <div className="flex items-center">
                   <img src="https://gateway.pinata.cloud/ipfs/QmPQ13zfryc9ERuJVj7pvjCfnqJ45Km4LE5oPcFvS1SMDg/datatoken.png" className="rounded-lg mr-2" alt="" width="40px" />
                   <img src="https://gateway.pinata.cloud/ipfs/QmY22NH4w9ErikFyhMXj9uBHn2EnuKtDptTnb7wV6pDsaY" className="rounded-lg mr-2" alt="" width="40px" />
                   {singleLiquidityPos ? <p className="text-gray-100 text-sm md:text-lg">{token2.info.symbol}/OCEAN</p> : <PulseLoader color="white" size="4px" margin="5px" />}
                 </div>
               </div>
-              <div className="md:grid md:grid-cols-5 modalSelectBg p-2 rounded">
+              <div className="md:grid md:grid-cols-5 cityDGrad p-2 rounded-xl">
                 <div className="col-span-2 grid grid-flow-col gap-4 justify-start items-center">
                   <p className="text-gray-100">Amount to unstake</p>
                 </div>
@@ -321,7 +322,7 @@ export default function Unstake() {
                         onWheel={(event: React.MouseEvent<HTMLButtonElement>) => event.currentTarget.blur()}
                         onKeyDown={(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}
                         type="number"
-                        className="h-full w-24 rounded-lg bg-black  focus:text-white bg-opacity-0 text-2xl px-1 outline-none focus:placeholder-gray-200 placeholder-gray-400 text-right"
+                        className="h-full w-24 rounded-lg bg-black focus:text-white bg-opacity-0 text-2xl px-1 outline-none focus:placeholder-gray-200 placeholder-gray-400 text-right"
                         placeholder="0.00"
                         value={token1.percentage?.dp(2).toString()}
                         disabled={inputDisabled}
@@ -358,9 +359,16 @@ export default function Unstake() {
                   </div>
                 </div>
               </div>
-              <div className="px-4 relative mt-6 mb-8">
+              {/* <div className="px-4 relative mt-6 mb-8">
                 <div className="rounded-full border-black border-4 absolute -top-7 bg-trade-darkBlue w-10 h-10 flex items-center justify-center swap-center">
                   {calculating ? <MoonLoader size={25} color={"white"} /> : <BsArrowDown size="30px" className="text-gray-300 m-0 p-0" />}
+                </div>
+              </div> */}
+              <div className="relative my-8">
+                <div className="absolute rounded-full bg-gradient-to-b from-transparent via-black to-black bg-opacity-90 h-8 w-8 transform left-1/2 -translate-x-1/2 -top-7 flex justify-center items-center">
+                  <div className="h-[1.8rem] w-[1.8rem] flex justify-center items-center rounded-full">
+                    {calculating ? <MoonLoader size={20} color={"white"} /> : <BsArrowDown size="25px" className="text-gray-300 m-0 p-0" />}
+                  </div>
                 </div>
               </div>
               <TokenSelect max={maxUnstake.OCEAN} otherToken={token2.info.symbol} pos={1} setToken={setToken1} token={token1} updateNum={updateNum} />
@@ -371,7 +379,7 @@ export default function Unstake() {
                 </button>
               </div>
             </div>
-            <div className="pt-3 pl-3">
+            <div className="pt-1 pl-3">
               <Link id="remove-lp-link" to="/stake/list" className="text-gray-300 hover:text-gray-100 transition-colors">
                 {"<"} Back to liquidity position
               </Link>
@@ -381,6 +389,6 @@ export default function Unstake() {
       ) : (
         <></>
       )}
-    </div>
+    </MiddleContainer>
   );
 }

@@ -55,15 +55,15 @@ export default function Stake() {
   useAutoLoadToken();
 
   useEffect(() => {
-    if(!tokensCleared.current) return 
-    
-    if (token1.info && token2.info ) {
+    if (!tokensCleared.current) return;
+
+    if (token1.info && token2.info) {
       getMaxAndAllowance();
     }
 
     if (token1.info && !token2.info && ocean && accountId) {
       ocean.getBalance(token1.info.address, accountId).then((res) => {
-        setToken1({ ...token1, balance: new BigNumber(res)});
+        setToken1({ ...token1, balance: new BigNumber(res) });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -283,9 +283,16 @@ export default function Stake() {
           <div className="lg:mx-auto sm:mx-4 mx-3">
             <div id="stakeModal" className="lg:w-107  bg-black bg-opacity-90 rounded-2xl p-2 hm-box">
               <TokenSelect max={maxStakeAmt} otherToken={"OCEAN"} pos={2} setToken={setToken2} token={token2} updateNum={() => {}} />
-              <div className="px-4 relative mt-6 mb-10">
+              {/* <div className="px-4 relative mt-6 mb-10">
                 <div className="rounded-full border-black border-4 absolute -top-7 bg-trade-darkBlue w-12 h-12 flex items-center justify-center swap-center">
                   {loading ? <MoonLoader size={25} color={"white"} /> : <AiOutlinePlus size="30" className="text-gray-300" />}
+                </div>
+              </div> */}
+              <div className="relative my-8">
+                <div className="absolute rounded-full bg-gradient-to-b from-transparent via-black to-black bg-opacity-90 h-8 w-8 transform left-1/2 -translate-x-1/2 -top-7 flex justify-center items-center">
+                  <div className="h-[1.8rem] w-[1.8rem] flex justify-center items-center rounded-full">
+                    {loading ? <MoonLoader size={20} color={"white"} /> :  <AiOutlinePlus size="25" className="text-gray-300" />}
+                  </div>
                 </div>
               </div>
               <TokenSelect

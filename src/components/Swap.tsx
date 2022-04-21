@@ -494,10 +494,10 @@ export default function Swap() {
       >
         <div className="sm:mx-4 mx-3">
           <div className="flex mt-6 w-full h-full items-center justify-center">
-            <div id="swapModal" className="lg:w-107 bg-black bg-opacity-90 rounded-2xl px-2 pb-2 hm-box">
+            <div id="swapModal" className="lg:w-107 bg-black bg-opacity-90 rounded-2xl pb-2 px-2 pt-1 hm-box">
               <div className="flex justify-between relative">
                 <div className="grid grid-flow-col gap-2 items-center">
-                  <div id="tradeSettingsBtn" onClick={() => setShowSettings(true)} className="hover:bg-primary-700 px-1.5 py-1.5 my-1 rounded-lg" role="button">
+                  <div id="tradeSettingsBtn" onClick={() => setShowSettings(true)} className="hover:bg-primary-700 p-1 my-[2px] rounded-lg" role="button">
                     <MdTune size="24" />
                   </div>
                 </div>
@@ -545,15 +545,12 @@ export default function Swap() {
                 pos={1}
                 updateNum={dbUpdateToken1}
               />
-              <div className="px-4 relative mt-6 mb-10">
-                <div
-                  id="swapTokensBtn"
-                  onClick={swapTokens}
-                  role="button"
-                  tabIndex={0}
-                  className="rounded-full border-black bg-opacity-100 border-4 absolute -top-7 bg-trade-darkBlue hover:bg-gray-600 transition-colors duration-200 w-12 h-12 flex swap-center items-center justify-center"
-                >
-                  {token2?.loading || token1?.loading || percLoading ? <MoonLoader size={25} color={"white"} /> : <IoSwapVertical size="30" className="text-gray-300" />}
+
+              <div className="relative my-8" id="swapTokensBtn" onClick={swapTokens} role="button" tabIndex={0}>
+                <div className="absolute rounded-full bg-gradient-to-b from-transparent via-black to-black bg-opacity-90 h-8 w-8 transform left-1/2 -translate-x-1/2 -top-7 flex justify-center items-center">
+                  <div className="bg-transparent hover:bg-white hover:bg-opacity-20 h-[1.8rem] w-[1.8rem] flex justify-center items-center rounded-full">
+                    {token2?.loading || token1?.loading || percLoading ? <MoonLoader size={20} color={"white"} /> : <IoSwapVertical size="25" className="text-gray-300" />}
+                  </div>
                 </div>
               </div>
               <TokenSelect setToken={setToken2} token={token2} max={maxExchange.maxBuy} otherToken={token1.info ? token1.info.symbol : ""} pos={2} updateNum={dbUpdateToken2} />
