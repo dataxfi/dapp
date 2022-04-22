@@ -1,8 +1,8 @@
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaBook } from "react-icons/fa";
-import SocialLinkIcons from "./SocialLinkIcons";
-import BuiltWDataX from "../footer/BuiltWDataX";
+import SocialLinkIcons from "./common/SocialLinkIcons";
+import BuiltWDataX from "./footer/BuiltWDataX";
 
 export default function LandingPage() {
   return (

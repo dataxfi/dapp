@@ -27,7 +27,7 @@ export default function TokenSelect({
   onMax?: Function;
   max: BigNumber;
 }) {
-  const { accountId, handleConnect, tokensCleared, location, config, ocean, setBlurBG, setSelectTokenPos, setShowTokenModal, selectTokenPos, blurBG } = useContext(GlobalContext);
+  const { accountId, handleConnect, tokensCleared, location, config, setBlurBG, setSelectTokenPos, setShowTokenModal} = useContext(GlobalContext);
   const [enabled, setEndabled] = useState(false);
   const [title, setTitle] = useState<TokenSelectTitles>();
 
@@ -37,6 +37,7 @@ export default function TokenSelect({
     } else {
       setEndabled(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, max, accountId]);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function TokenSelect({
         setTitle("Datatoken pool");
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, setTitle, pos]);
 
   function connectWalletOrShowlist() {

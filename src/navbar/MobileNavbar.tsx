@@ -19,7 +19,7 @@ const MobileNavbar = ({
   network: JSX.Element;
   handleModalOrConnect: Function;
 }) => {
-  const { accountId, bgOff } = useContext(GlobalContext);
+  const { accountId } = useContext(GlobalContext);
   const [menuVisible, setMenuVisible] = useState(false);
   const [walletBtnVis, setWalletBtnVis] = useState(false);
 

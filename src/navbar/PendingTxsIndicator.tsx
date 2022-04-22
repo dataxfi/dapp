@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { MoonLoader, RingLoader } from "react-spinners";
+import { MoonLoader } from "react-spinners";
 import { GlobalContext } from "../context/GlobalState";
 
 export default function PendingTxsIndicator() {

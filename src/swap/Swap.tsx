@@ -46,10 +46,8 @@ export default function Swap() {
     swapConfirmed,
     preTxDetails,
     setExecuteUnlock,
-    executeUnlock,
     showUnlockTokenModal,
     setSwapConfirmed,
-    approving,
     swapFee,
     setSwapFee,
     minReceived,
@@ -160,6 +158,7 @@ export default function Swap() {
       setShowUnlockTokenModal(false);
       setExecuteSwap(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token1.allowance]);
 
   useEffect(() => {
@@ -190,7 +189,7 @@ export default function Swap() {
       return;
     }
 
-    if (accountId)
+    if (accountId && executeSwap)
       if (token1.allowance?.lt(token1.value)) {
         setPreTxDetails({
           accountId,
@@ -223,6 +222,7 @@ export default function Swap() {
         setLastTx(preTxDetails);
         swap();
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [swapConfirmed, executeSwap]);
 
   async function updateBalance(address: string) {

@@ -1,10 +1,9 @@
-import { IToken } from "@dataxfi/datax.js";
-import { ChangeEventHandler, useContext, useEffect, useState } from "react";
+import { ChangeEventHandler, useContext } from "react";
 import { DebounceInput } from "react-debounce-input";
-import { GlobalContext, INITIAL_TOKEN_STATE } from "../context/GlobalState";
+import { GlobalContext } from "../context/GlobalState";
 import WrappedInput from "../util-components/WrappedInput";
 
-export default function ({ updateFunction, pos }: { updateFunction: Function & ChangeEventHandler<HTMLInputElement>; pos: number }) {
+export default function LSInput ({ updateFunction, pos }: { updateFunction: Function & ChangeEventHandler<HTMLInputElement>; pos: number }) {
   const { token1, token2 } = useContext(GlobalContext);
   const value = pos === 1 ? token1.value.dp(5).toString() : token2.value.dp(5).toString();
 

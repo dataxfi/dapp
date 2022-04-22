@@ -125,7 +125,7 @@ export default function Stake() {
       return;
     }
 
-    if (accountId)
+    if (accountId && executeStake)
       if (token1.allowance?.lt(token1.value)) {
         setPreTxDetails({
           accountId,
@@ -154,6 +154,7 @@ export default function Stake() {
         setLastTx(preTxDetails);
         stake(preTxDetails);
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [executeStake]);
 
   async function getMaxStakeAmt() {
@@ -291,7 +292,7 @@ export default function Stake() {
               <div className="relative my-8">
                 <div className="absolute rounded-full bg-gradient-to-b from-transparent via-black to-black bg-opacity-90 h-8 w-8 transform left-1/2 -translate-x-1/2 -top-7 flex justify-center items-center">
                   <div className="h-[1.8rem] w-[1.8rem] flex justify-center items-center rounded-full">
-                    {loading ? <MoonLoader size={20} color={"white"} /> :  <AiOutlinePlus size="25" className="text-gray-300" />}
+                    {loading ? <MoonLoader size={20} color={"white"} /> : <AiOutlinePlus size="25" className="text-gray-300" />}
                   </div>
                 </div>
               </div>

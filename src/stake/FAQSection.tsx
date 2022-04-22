@@ -34,9 +34,11 @@ export default function FAQSection() {
         FAQ {isOpen ? <BsChevronDown /> : <BsChevronRight />}
       </button>
       <Collapse isOpened={isOpen}>
-        {LSQAS.map((qa) => (
-          <LSFAQItem QA={qa} FAQOpen={isOpen} />
-        ))}
+        <ul>
+          {LSQAS.map((qa, index) => (
+            <LSFAQItem QA={qa} FAQOpen={isOpen} index={index} />
+          ))}
+        </ul>
       </Collapse>
     </div>
   );

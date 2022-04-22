@@ -15,7 +15,7 @@ import TokenSelect from "../common/TokenSelect";
 import { IMaxUnstake } from "@dataxfi/datax.js";
 import MaxToolTip from "../common/MaxToolTip";
 import { transactionTypeGA } from "../context/Analytics";
-import MiddleContainer from "../util-components/MiddleContainer"; 
+import MiddleContainer from "../util-components/MiddleContainer";
 
 export default function Unstake() {
   const {
@@ -37,7 +37,6 @@ export default function Unstake() {
     setExecuteUnstake,
     executeUnstake,
     setPreTxDetails,
-    executeUnlock,
     setExecuteUnlock,
   } = useContext(GlobalContext);
   const [btnDisabled, setBtnDisabled] = useState<boolean>(false);
@@ -143,7 +142,7 @@ export default function Unstake() {
   }, [token1.value, lastTx, singleLiquidityPos, maxUnstake, token1.allowance, token1.info, token2.info, ocean]);
 
   useEffect(() => {
-    if (!accountId || !token1.info || !token2.info) return;
+    if (!accountId || !token1.info || !token2.info || !executeUnstake) return;
     if (token1.allowance?.lt(token1.value)) {
       setPreTxDetails({
         txDateId: Date.now().toString(),
@@ -158,7 +157,7 @@ export default function Unstake() {
       setExecuteUnlock(true);
       setShowUnlockTokenModal(true);
       setBlurBG(true);
-    } else if (executeUnstake) {
+    } else {
       setShowConfirmModal(true);
       const preTxDetails: ITxDetails = {
         txDateId: Date.now().toString(),
@@ -175,6 +174,7 @@ export default function Unstake() {
       setShowConfirmModal(true);
       setBlurBG(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [executeUnstake]);
 
   const updateNum = async (val: string) => {

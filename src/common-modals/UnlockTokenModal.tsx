@@ -31,11 +31,11 @@ export default function UnlockTokenModal() {
   } = useContext(GlobalContext);
   const [pool, setPool] = useState<string | null>(null);
   const [address, setAddress] = useState<string | null>(null);
-  const [allowance, setAllowance] = useState<BigNumber>();
   const remove = "/stake/remove";
 
   useEffect(() => {
     if (showUnlockTokenModal) setApproving("pending");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showUnlockTokenModal]);
 
   // Set up the interval.
@@ -48,7 +48,6 @@ export default function UnlockTokenModal() {
           getAllowance(address, accountId, pool, ocean).then((res) => {
             console.log("Response from allowance call", res);
             const allowance = new BigNumber(res);
-            setAllowance(new BigNumber(allowance));
             if (allowance.gte(token1.value)) {
               setExecuteUnlock(false);
               setPool(null);
@@ -183,7 +182,13 @@ export default function UnlockTokenModal() {
       </div>
     ) : (
       <div className="mt-4">
-        <button id="confirmSwapModalBtn" onClick={() => {unlockTokens("once")}} className="px-4 py-2 text-lg w-full txButton rounded-lg">
+        <button
+          id="confirmSwapModalBtn"
+          onClick={() => {
+            unlockTokens("once");
+          }}
+          className="px-4 py-2 text-lg w-full txButton rounded-lg"
+        >
           Confirm swap
         </button>
       </div>

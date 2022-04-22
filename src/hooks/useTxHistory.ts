@@ -7,7 +7,6 @@ export default function useTxHistory() {
   const {
     txHistory,
     pendingTxs,
-    setPendingTxs,
     accountId,
     chainId,
     watcher,

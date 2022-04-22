@@ -1,5 +1,5 @@
 import { BsX } from 'react-icons/bs'
-import Button from './Button'
+import Button from '../common/Button'
 
 const CreatePoolModal = () => {
     return (

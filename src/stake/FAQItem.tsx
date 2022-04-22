@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Collapse } from "react-collapse";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
-export default function LSFAQItem({ QA, FAQOpen }: { QA: string[]; FAQOpen: boolean }) {
+export default function LSFAQItem({ QA, FAQOpen, index }: { QA: string[]; FAQOpen: boolean; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export default function LSFAQItem({ QA, FAQOpen }: { QA: string[]; FAQOpen: bool
   }, [FAQOpen]);
 
   return (
-    <div className="rounded-xl text-xs bg-city-blue bg-opacity-30 mt-2 hover:bg-opacity-50">
+    <li key={`faq-${index}`} className="rounded-xl text-xs bg-city-blue bg-opacity-30 mt-2 hover:bg-opacity-50">
       <button
         onClick={() => {
           setIsOpen(!isOpen);
@@ -23,6 +23,6 @@ export default function LSFAQItem({ QA, FAQOpen }: { QA: string[]; FAQOpen: bool
       <Collapse isOpened={isOpen}>
         <p className="p-2">{QA[1]}</p>
       </Collapse>
-    </div>
+    </li>
   );
-}
+} 

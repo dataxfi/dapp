@@ -21,10 +21,10 @@ const DesktopNavbar = ({
   const { accountId, buttonText, bgOff } = useContext(GlobalContext);
 
   return (
-    <header id="desktopNavBar" className={`hidden lg:flex flex-col headerGrad justify-between items-center py-1 pr-2`}>
+    <header id="desktopNavBar" className={`hidden lg:flex flex-col ${bgOff ? "" : "headerGrad"} justify-between items-center py-1 pr-2`}>
       <div className="flex justify-between w-full ">
         <div className="grid grid-flow-col gap-8 items-center  ">
-          <Link to={"/"} className="w-1/3 lg:w-auto font-spectral text-3xl logoGrad pl-4">
+          <Link to={"/"} className={`w-1/3 lg:w-auto font-spectral text-3xl pl-4 ${bgOff ? "" : "logoGrad"}`}>
             Datapolis
             <div className="px-2">
               <div className="w-full h-2px bg-yellow">
@@ -50,11 +50,9 @@ const DesktopNavbar = ({
             <h3>{network}</h3>
           </div>
           <div className="hidden md:block">
-            <button
-              id={`${accountId ? "d-view-txs-btn" : "d-wallet-button"}`}
-              onClick={() => handleModalOrConnect()}
-              className="btn-dark hm-box rounded"
-            >{accountId ? truncateId() : buttonText}</button>
+            <button id={`${accountId ? "d-view-txs-btn" : "d-wallet-button"}`} onClick={() => handleModalOrConnect()} className="btn-dark hm-box rounded">
+              {accountId ? truncateId() : buttonText}
+            </button>
           </div>
         </div>
       </div>
