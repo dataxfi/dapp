@@ -47,7 +47,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative overflow-hidden">
       <div
         className={`w-full h-full overflow-hidden ${blurBG ? "blur-xs" : "blur-none"} ${
           bgOff ? "" : location === "/trade" ? "lg:bg-dataXtrade lg:bg-cover lg:bg-top" : location !== "/" ? "lg:bg-dataXstake lg:bg-cover lg:bg-bottom" : ""
