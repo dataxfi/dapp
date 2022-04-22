@@ -72,7 +72,7 @@ export default function TokenSelect({
   return (
     <div id={`${pos}-swapInput`} className="rounded-xl">
       <div className={`md:grid md:grid-cols-5 cityDGrad rounded-t-xl p-1`}>
-        <div className="flex items-center p-1">
+      <div className="col-span-2 grid grid-flow-col gap-4 justify-start items-center p-1">
           {token?.info && tokensCleared.current ? (
             <img src={token?.info.logoURI} className="w-10 h-10 rounded-md mr-1" alt="" />
           ) : (
