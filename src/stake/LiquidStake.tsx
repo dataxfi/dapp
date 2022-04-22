@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 import FAQSection from "./FAQSection";
 import { GlobalContext } from "../context/GlobalState";
 import LSInput from "./LSInput";
-import MiddleContainer from "./MiddleContainer";
+import MiddleContainer from "../util-components/MiddleContainer";
 import { BsArrowDown } from "react-icons/bs";
 
 export default function LiquidStake() {

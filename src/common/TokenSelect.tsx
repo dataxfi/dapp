@@ -4,7 +4,7 @@ import { DebounceInput } from "react-debounce-input";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import BigNumber from "bignumber.js";
-import WrappedInput from "./WrappedInput";
+import WrappedInput from "../util-components/WrappedInput";
 import { ReactComponent as XLogo } from "../assets/datax-x-logo.svg";
 import { IToken } from "@dataxfi/datax.js";
 import { TokenSelectTitles } from "../utils/types";

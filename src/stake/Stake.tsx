@@ -9,10 +9,10 @@ import { ITxDetails } from "../utils/types";
 import { getAllowance } from "../hooks/useTokenList";
 import { IBtnProps } from "../utils/types";
 import useAutoLoadToken from "../hooks/useAutoLoadToken";
-import TokenSelect from "./TokenSelect";
+import TokenSelect from "../common/TokenSelect";
 import PositionBox from "./PositionBox";
-import DatasetDescription from "./DTDescriptionModal";
-import ViewDescBtn from "./ViewDescButton";
+import DatasetDescription from "../common-modals/DTDescriptionModal";
+import ViewDescBtn from "../common/ViewDescButton";
 import { transactionTypeGA } from "../context/Analytics";
 
 const INITIAL_BUTTON_STATE = {

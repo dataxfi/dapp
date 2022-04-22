@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { BsX } from "react-icons/bs";
 import OutsideClickHandler from "react-outside-click-handler";
 import { GlobalContext } from "../context/GlobalState";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 
 const ConfirmModal = () => {
   const { showConfirmModal, setShowConfirmModal, location, token1, token2, singleLiquidityPos, setBlurBG } = useContext(GlobalContext);

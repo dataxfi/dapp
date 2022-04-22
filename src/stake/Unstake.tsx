@@ -2,20 +2,20 @@ import { useContext, useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
-import UserMessage from "./UserMessage";
+import UserMessage from "../common/UserMessage";
 import { MoonLoader, PulseLoader } from "react-spinners";
 import { DebounceInput } from "react-debounce-input";
 import useLiquidityPos from "../hooks/useLiquidityPos";
 import BigNumber from "bignumber.js";
-import WrappedInput from "./WrappedInput";
+import WrappedInput from "../util-components/WrappedInput";
 import { getAllowance } from "../hooks/useTokenList";
 import { ITxDetails } from "../utils/types";
 import useAutoLoadToken from "../hooks/useAutoLoadToken";
-import TokenSelect from "./TokenSelect";
+import TokenSelect from "../common/TokenSelect";
 import { IMaxUnstake } from "@dataxfi/datax.js";
-import MaxToolTip from "./MaxToolTip";
+import MaxToolTip from "../common/MaxToolTip";
 import { transactionTypeGA } from "../context/Analytics";
-import MiddleContainer from "./MiddleContainer";
+import MiddleContainer from "../util-components/MiddleContainer"; 
 
 export default function Unstake() {
   const {

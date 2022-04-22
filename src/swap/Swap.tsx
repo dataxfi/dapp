@@ -1,17 +1,17 @@
-import TokenSelect from "./TokenSelect";
+import TokenSelect from "../common/TokenSelect";
 import { IoSwapVertical } from "react-icons/io5";
 import { MdTune } from "react-icons/md";
 import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
-import Button from "./Button";
+import Button from "../common/Button";
 import OutsideClickHandler from "react-outside-click-handler";
 import { MoonLoader } from "react-spinners";
 import BigNumber from "bignumber.js";
 import { getAllowance } from "../hooks/useTokenList";
 import { IBtnProps } from "../utils/types";
 import { IMaxExchange } from "@dataxfi/datax.js";
-import DatasetDescription from "./DTDescriptionModal";
-import ViewDescBtn from "./ViewDescButton";
+import DatasetDescription from "../common-modals/DTDescriptionModal";
+import ViewDescBtn from "../common/ViewDescButton";
 import { transactionTypeGA } from "../context/Analytics";
 
 const INITIAL_MAX_EXCHANGE: IMaxExchange = {

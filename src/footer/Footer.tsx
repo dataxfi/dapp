@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { FaBook, FaDotCircle } from "react-icons/fa";
 import { getCommitInfo } from "../utils/gitInfo";
 import { GlobalContext } from "../context/GlobalState";
-import SocialLinkIcons from "./SocialLinkIcons";
+import SocialLinkIcons from "../common/SocialLinkIcons";
 import BGToggle from "./BGToggle";
 import BuiltWDataX from "./BuiltWDataX";
 

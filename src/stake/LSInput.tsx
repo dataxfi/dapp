@@ -2,7 +2,7 @@ import { IToken } from "@dataxfi/datax.js";
 import { ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { GlobalContext, INITIAL_TOKEN_STATE } from "../context/GlobalState";
-import WrappedInput from "./WrappedInput";
+import WrappedInput from "../util-components/WrappedInput";
 
 export default function ({ updateFunction, pos }: { updateFunction: Function & ChangeEventHandler<HTMLInputElement>; pos: number }) {
   const { token1, token2 } = useContext(GlobalContext);

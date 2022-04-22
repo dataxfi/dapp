@@ -1,7 +1,7 @@
 import { MdClose } from "react-icons/md";
 import TokenModalItem from "./TokenModalItem";
 import { useEffect, useState, useContext, useRef } from "react";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 import ReactList from "react-list";
 import { GlobalContext, INITIAL_TOKEN_STATE } from "../context/GlobalState";
 import useTokenList, { commonTokens } from "../hooks/useTokenList";

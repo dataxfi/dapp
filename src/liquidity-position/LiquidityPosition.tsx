@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import LiquidityPositionItem from "./LiquidityPositionItem";
-import UserMessage from "./UserMessage";
+import UserMessage from "../common/UserMessage";
 import { MoonLoader } from "react-spinners";
 import { IUserMessage, ILiquidityPosition } from "../utils/types";
 import useLiquidityPos from "../hooks/useLiquidityPos";
-import MiddleContainer from "./MiddleContainer";
+import MiddleContainer from "../util-components/MiddleContainer";
 
 export default function LiquidityPosition() {
   const { accountId, allStakedPools, setShowTokenModal, setBlurBG, importPool } = useContext(GlobalContext);

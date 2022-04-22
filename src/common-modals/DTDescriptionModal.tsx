@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { GlobalContext } from "../context/GlobalState";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 //@ts-ignore
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 //@ts-ignore
