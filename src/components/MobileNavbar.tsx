@@ -71,9 +71,9 @@ const MobileNavbar = ({
       </div>
       <OutsideClickHandler onOutsideClick={()=>{setMenuVisible(false)}}>
         <div
-          className={`w-full bg-black bg-opacity-75 z-10  mb-5 absolute top-0 transform${
+          className={`w-full bg-black bg-opacity-90 z-10  mb-5 absolute top-0 transform ${
             menuVisible ? " translate-y-3/4" : " -translate-y-full"
-          } transition duration-1000 border-t border-b lg:-translate-y-19`}
+          } transition duration-1000 border-t border-b border-city-blue lg:-translate-y-19`}
         >
           {links.map((link, idx) => {
             return (
