@@ -72,9 +72,9 @@ export default function TokenSelect({
   return (
     <div id={`${pos}-swapInput`} className="rounded-xl">
       <div className={`md:grid md:grid-cols-5 cityDGrad rounded-t-xl p-1`}>
-        <div className="col-span-2 grid grid-flow-col gap-4 justify-start items-center p-1">
+        <div className="flex items-center p-1">
           {token?.info && tokensCleared.current ? (
-            <img src={token?.info.logoURI} className="w-10 h-10 rounded-md" alt="" />
+            <img src={token?.info.logoURI} className="w-10 h-10 rounded-md mr-1" alt="" />
           ) : (
             <div className="w-10 h-10 rounded-md bg-background flex justify-center items-center text-3xl">
               <XLogo style={{ height: "30px" }} />
@@ -90,11 +90,11 @@ export default function TokenSelect({
           >
             <p className="text-xs text-gray-200 text-left">{title}</p>
             {token?.info && tokensCleared.current ? (
-              <span className="text-sm sm:text-2xl text-gray-200 font-bold flex justify-center items-center">
-                <span id={`selectedToken${pos}`} className="text-sm sm:text-lg">
+              <span className="text-gray-200 font-bold flex justify-center items-center">
+                <span id={`selectedToken${pos}`} className="text-xs md:text-lg">
                   {token.info.symbol}
                 </span>
-                <BsChevronDown className="text-gray-200" size="16" />
+                <BsChevronDown className="text-gray-200" size="10" />
               </span>
             ) : (
               <p id="selectTokenBtn" className="text-xs btn-dark rounded-full mt-1">
@@ -103,7 +103,6 @@ export default function TokenSelect({
             )}
           </div>
         </div>
-
         {location === "/stake" && pos === 2 ? (
           token.info ? (
             <div className="col-span-3 ml-4 mt-3 md:mt-0">
@@ -204,6 +203,7 @@ export default function TokenSelect({
             {/* <input onChange={(e) => updateNum(e.target.value)} onWheel={ event => event.currentTarget.blur() } onKeyDown={(evt) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()} type="number" className="h-full w-full rounded-lg bg-primary-900 text-3xl px-2 outline-none focus:placeholder-gray-200 placeholder-gray-400" placeholder="0.0" value={num} /> */}
           </div>
         )}
+
       </div>
     </div>
   );

@@ -31,7 +31,8 @@ html,
   @apply text-gray-100 bg-no-repeat md:h-full m-0 bg-fixed;
 
   background: rgb(0,38,70);
-  background: radial-gradient(circle at 37% 40%, rgba(5,21,42,1) 0%, rgba(25,23,38,1) 60%); 
+  background: radial-gradient(circle at 37% 40%, rgba(10,31,68,1) 0%, rgba(33,31,45,1) 60%); 
+  /* rgba(10,31,68,1) 0%, rgba(33,31,45,1) 60% */
 }
 
 html,

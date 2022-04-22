@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
 import UserMessage from "../common/UserMessage";
 import { MoonLoader, PulseLoader } from "react-spinners";
-import { DebounceInput } from "react-debounce-input";
 import useLiquidityPos from "../hooks/useLiquidityPos";
 import BigNumber from "bignumber.js";
 import WrappedInput from "../util-components/WrappedInput";
@@ -16,6 +15,7 @@ import { IMaxUnstake } from "@dataxfi/datax.js";
 import MaxToolTip from "../common/MaxToolTip";
 import { transactionTypeGA } from "../context/Analytics";
 import MiddleContainer from "../util-components/MiddleContainer";
+import { DebounceInput } from "react-debounce-input";
 
 export default function Unstake() {
   const {
