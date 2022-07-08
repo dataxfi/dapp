@@ -128,12 +128,17 @@ export default function Stake() {
   }, [tokenIn.info?.address, accountId]);
 
   useEffect(() => {
-    if (path && path?.length > 0) {
+    if (path?.length === 1) {
+      setMinStakeAmt(new BigNumber(baseMinExchange));
+    } else if (path && path?.length > 1) {
       if (path && web3) {
-        trade?.getAmountsIn(baseMinExchange, path).then((res) => setMinStakeAmt(new BigNumber(res[0])));
+        trade?.getAmountsIn(baseMinExchange, path).then((res) => {
+          console.log('Minimum stake for token in: ', res);
+          setMinStakeAmt(new BigNumber(res[0]));
+        });
       }
     }
-  }, [tokenIn.info?.address]);
+  }, [tokenIn.info?.address, path?.length]);
 
   useEffect(() => {
     const btnManager = new BtnManager(setBtnProps);
@@ -185,16 +190,11 @@ export default function Stake() {
     } else {
       if (stake && tokenOut.info?.pools && accountId && path) {
         const usingETH = accountId.toLowerCase() === tokenIn.info?.address.toLowerCase();
-        console.log(
-          path[0].toLowerCase() === tokenIn.info?.address.toLowerCase(),
-          usingETH && path[0].toLowerCase() === config?.custom.nativeAddress.toLowerCase(),
-          (!usingETH && path[0].toLowerCase() === tokenIn.info?.address.toLowerCase()) ||
-            (usingETH && path[0].toLowerCase() === config?.custom.nativeAddress.toLowerCase())
-        );
         if (
           (!usingETH && path[0].toLowerCase() === tokenIn.info?.address.toLowerCase()) ||
           (usingETH && path[0].toLowerCase() === config?.custom.nativeAddress.toLowerCase())
         ) {
+          console.log(tokenOut.info?.pools[0].id, accountId, path, usingETH);
           stake
             ?.getUserMaxStake(tokenOut.info?.pools[0].id, accountId, path, usingETH)
             .then((res) => {
@@ -321,8 +321,7 @@ export default function Stake() {
       spotSwapFee
     ) {
       let amountIn = val.dp(5).toString();
-      const amountsOut = await trade.getAmountsOut(amountIn, path);
-      console.log(amountsOut);
+
       const stakeInfo: IStakeInfo = {
         meta: [tokenOut.info.pools[0].id, accountId, refAddress, config.custom.uniV2AdapterAddress],
         uints: [amountIn, spotSwapFee, '0'],

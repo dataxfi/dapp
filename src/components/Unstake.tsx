@@ -355,6 +355,7 @@ export default function Unstake() {
         setSingleLiquidityPos({ ...singleLiquidityPos, shares: newShares });
         setUnstakeAllowance(unstakeAllowance.minus(preTxDetails.shares));
       }
+      
     } catch (error: any) {
       console.error(error);
       setLastTx({ ...preTxDetails, status: 'Failure' });
