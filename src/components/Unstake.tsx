@@ -284,13 +284,14 @@ export default function Unstake() {
 
           //USE 5 DECIMAL PLACES, RESPONSE NOT TO BE TRUNCATED
           const sharesAmtFromPerc = percInput.div(100).multipliedBy(singleLiquidityPos.shares).dp(5);
-          console.log(sharesAmtFromPerc.toString());
 
           let { baseAmountOut, dataxFee, refFee } = await stake.calcTokenOutGivenPoolIn({
             meta,
             uints: [sharesAmtFromPerc.toString(), spotSwapFee, '0'],
             path,
           });
+
+          console.log("Amt Out: ", baseAmountOut)
 
           const basePoolName = singleLiquidityPos?.baseToken.symbol;
           console.log("Base pool token symbol: ", basePoolName)
@@ -355,7 +356,7 @@ export default function Unstake() {
         setSingleLiquidityPos({ ...singleLiquidityPos, shares: newShares });
         setUnstakeAllowance(unstakeAllowance.minus(preTxDetails.shares));
       }
-      
+
     } catch (error: any) {
       console.error(error);
       setLastTx({ ...preTxDetails, status: 'Failure' });

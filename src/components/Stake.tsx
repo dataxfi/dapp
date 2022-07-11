@@ -244,7 +244,7 @@ export default function Stake() {
       const stakeInfo: IStakeInfo = {
         meta,
         path,
-        uints: [tokenIn.value.toString(), spotSwapFee, minAmountOut.toString()],
+        uints: [tokenIn.value.toString(), swapFee, minAmountOut.toString()],
       };
 
       console.log(stakeInfo);
