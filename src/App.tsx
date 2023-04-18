@@ -18,6 +18,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Stake from './components/Stake';
 import Swap from './components/Swap';
+import Delegate from './components/Delegate';
 
 BigNumber.config({ DECIMAL_PLACES: 18, ROUNDING_MODE: BigNumber.ROUND_DOWN, EXPONENTIAL_AT: 30 });
 
@@ -66,6 +67,7 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/trade" element={<Swap />} />
                 <Route path="/stake" element={<Stake />} />
+                <Route path="/delegate" element={<Delegate />} />
                 <Route path="/stake/remove" element={<Unstake />} />
                 <Route path="/stake/list" element={<LiquidityPosition />} />
               </Routes>

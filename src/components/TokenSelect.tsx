@@ -73,6 +73,8 @@ export default function TokenSelect({
       }
     } else if (location === '/stake/remove') {
       setTitle('You will receive');
+    } else if (location === '/delegate') {
+      setTitle('Deligating your VP to');
     } else {
       if (pos === 1) {
         setTitle('You are staking');

@@ -15,6 +15,7 @@ export type TokenSelectTitles =
   | 'You are selling'
   | 'Datatoken pool'
   | 'You are staking'
+  | 'Deligating your VP to'
   | 'You will receive';
 
 export interface IBtnProps {
