@@ -7,7 +7,7 @@ import { supportedChains } from '../@types/types';
 const text = {
   T_SWAP: 'Trade',
   T_STAKE: 'Stake',
-  T_DELICATE: 'Delicate',
+  T_DELEGATE: 'Delegate',
   T_CONNECT_WALLET: 'Connect to a wallet',
 };
 
@@ -16,7 +16,7 @@ const Navbar = () => {
   const links = [
     // { name: text.T_SWAP, link: '/trade' },
     { name: text.T_STAKE, link: '/stake' },
-    { name: text.T_DELICATE, link: '/delegate' },
+    { name: text.T_DELEGATE, link: '/delegate' },
   ];
 
   const { buttonText, config, chainId, accountId, setShowTxHistoryModal, handleConnect, setBlurBG, location } =

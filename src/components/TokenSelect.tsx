@@ -18,6 +18,9 @@ export default function TokenSelect({
   onPerc = () => {},
   onMax = () => {},
   max,
+  percentValue,
+  valueVP,
+  totalVpBalance
 }: {
   setToken: React.Dispatch<React.SetStateAction<IToken>>;
   token: IToken;
@@ -27,6 +30,10 @@ export default function TokenSelect({
   onPerc?: Function;
   onMax?: Function;
   max: BigNumber;
+  percentValue?: number;
+  valueVP?: number;
+  totalVpBalance?: number;
+  
 }) {
   const {
     accountId,
@@ -59,7 +66,10 @@ export default function TokenSelect({
         token.info?.address.toLowerCase() === accountId?.toLowerCase())
     ) {
       setEndabled(true);
+    } else if (location === '/delegate') {
+      setEndabled(true);
     } else {
+      // alert('falseing');
       setEndabled(false);
     }
   }, [token, max, accountId]);
@@ -125,7 +135,7 @@ export default function TokenSelect({
               </span>
             ) : (
               <p id="selectTokenBtn" className="text-xs btn-dark rounded-full mt-1">
-                Select Token
+               {location==='/delegate'? 'Select Asset':'Select Token'}
               </p>
             )}
           </div>
@@ -180,17 +190,41 @@ export default function TokenSelect({
                   max={max}
                   step="any"
                   disabled={token?.loading || location === '/stake/remove' || !enabled}
-                  debounceTimeout={500}
+                  debounceTimeout={100}
+                  // onChange={(e) => {
+                  //   if (updateNum) updateNum(e.target.value);
+                  // }}
                   onChange={(e) => {
-                    if (updateNum) updateNum(e.target.value);
+                    const inputValue = Number(e.target.value);
+                    if (enabled && inputValue <= totalVpBalance) {
+                      updateNum(inputValue);
+                    } else {
+                      e.preventDefault()
+
+                      updateNum(totalVpBalance);
+                    }
                   }}
                   onWheel={(event: React.MouseEvent<HTMLInputElement>) => event.currentTarget.blur()}
-                  onKeyDown={(evt) => ['e', 'E', '+', '-'].includes(evt.key) && evt.preventDefault()}
+                  // onKeyDown={(evt) => ['e', 'E', '+', '-'].includes(evt.key) && evt.preventDefault()}
+                  onKeyPress={(e: React.KeyboardEvent<HTMLDivElement>) => {
+                    // Allow only numbers, decimal point, and arrow keys
+                    const keyValue = e.key;
+                    const validKeys = /^[\d.]$/;
+                    if (
+                      !validKeys.test(keyValue) &&
+                      keyValue !== 'ArrowLeft' &&
+                      keyValue !== 'ArrowRight' &&
+                      keyValue !== 'Delete' &&
+                      keyValue !== 'Backspace'
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
                   element={WrappedInput}
                   type="number"
                   className="h-full w-full rounded-lg bg-opacity-0 bg-white text-2xl outline-none overflow-ellipsis focus:placeholder-gray-200 placeholder-gray-400 mr-2"
-                  placeholder="0.0"
-                  value={token?.value.gt(0) ? token?.value.dp(5).toString() : ''}
+                  placeholder={location === '/delegate' ? '0.0' : 0.0}
+                  value={location === '/delegate' ? valueVP : token?.value.gt(0) ? token?.value.dp(5).toString() : ''}
                 />
                 <div>
                   {pos === 2 || location === '/stake/remove' ? null : token?.balance ? (
@@ -204,15 +238,34 @@ export default function TokenSelect({
                         className={'btn-dark btn-sm rounded-full text-xs'}
                         disabled={!enabled}
                       >
-                        Max
+                        Max 
                       </button>
                       <DebounceInput
                         id={`token${pos}-perc-input`}
-                        value={token.percentage.dp(3).toString()}
+                        value={location === '/delegate' ? percentValue?.toString() : token.percentage.dp(3).toString()}
                         type="number"
-                        debounceTimeout={500}
+                        onKeyPress={(e: React.KeyboardEvent<HTMLDivElement>) => {
+                          // Allow only numbers, decimal point, and arrow keys
+                          const keyValue = e.key;
+                          const validKeys = /^[\d.]$/;
+                          if (
+                            !validKeys.test(keyValue) &&
+                            keyValue !== 'ArrowLeft' &&
+                            keyValue !== 'ArrowRight' &&
+                            keyValue !== 'Delete' &&
+                            keyValue !== 'Backspace'
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
+                        debounceTimeout={100}
                         onChange={(e) => {
-                          if (enabled) onPerc(e.target.value);
+                          const inputValue = Number(e.target.value);
+                          if (enabled && inputValue <= 100) {
+                            onPerc(inputValue);
+                          } else {
+                            onPerc(100);
+                          }
                         }}
                         className={`text-xs ${
                           enabled ? 'modalSelectBg bg-opacity-25' : 'bg-primary-500 bg-opacity-25 text-primary-600'

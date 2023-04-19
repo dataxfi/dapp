@@ -16,9 +16,7 @@ export default function Deligate() {
 
   return (
     <>
-    
-        <VPmodal />
-   
+      <VPmodal />
     </>
   );
 }

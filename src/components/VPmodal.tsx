@@ -5,20 +5,120 @@ import BigNumber from 'bignumber.js';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import AllocationInfo from './AllocationsInfo';
+import { BtnManager, INITIAL_BUTTON_STATE } from '../utils/utils';
+import { ITxDetails, IBtnProps, IPoolMetaData } from '../@types/types';
 
 export default function VPmodal() {
-  const { provider, accountId, tokenIn, showDescModal, tokenOut } = useContext(GlobalContext);
   const GlobalValues = useContext(GlobalContext);
-
   const [maxStakeAmt, setMaxStakeAmt] = useState<BigNumber>(new BigNumber(0));
+  const [btnProps, setBtnProps] = useState<IBtnProps>(INITIAL_BUTTON_STATE);
+  const [totalVpBalance, setTotalBalance] = useState(5000);
+  const [percentageVP, setPercentageVP] = useState(0);
+  const [valueVP, setValueVP] = useState(0);
 
+  const {
+    accountId,
+    chainId,
+    setConfirmingTx,
+    tokenOut,
+    setTokenOut,
+    tokenIn,
+    setTokenIn,
+    setLastTx,
+    lastTx,
+    tokensCleared,
+    setSnackbarItem,
+    showDescModal,
+    executeStake,
+    setExecuteStake,
+    setBlurBG,
+    setShowConfirmTxDetails,
+    setTxApproved,
+    stake,
+    refAddress,
+    config,
+    slippage,
+    trade,
+    path,
+    web3,
+    swapFee,
+    spotSwapFee,
+    setSwapFee,
+    baseMinExchange,
+    meta,
+    executeUnlock,
+    preTxDetails,
+    balanceTokenIn,
+    setBalanceTokenIn,
+    showConfirmTxDetails,
+    approving,
+    handleConnect,
+  } = useContext(GlobalContext);
   useEffect(() => {
-    console.log('provider is', provider);
-  }, [provider]);
+    const btnManager = new BtnManager(setBtnProps);
+    if (!accountId) {
+      btnManager.updateBtn();
+    } else if (!tokenOut.info) {
+      btnManager.updateBtn('Delegate And Allocate', true);
+    } else if (!tokenIn.info) {
+      btnManager.updateBtn('Select a Token', true);
+    } else if (path && path?.length === 0) {
+      btnManager.updateBtn('Routing...', true);
+    } else if (!path) {
+      btnManager.updateBtn('Insufficient Liquidity', true);
+    } else if (!tokenIn.value || tokenIn.value.eq(0)) {
+      btnManager.updateBtn('Enter Stake Amount', true);
+    } else if (balanceTokenIn?.eq(0) || (balanceTokenIn && tokenIn.value.gt(balanceTokenIn))) {
+      btnManager.updateBtn(`Not Enough ${tokenIn.info?.symbol} Balance`, true);
+    } else if (lastTx?.status === 'Pending' && (executeStake || executeUnlock)) {
+      btnManager.updateBtn('Processing Transaction...', true);
+    } else if (tokenIn.allowance?.lt(tokenIn.value)) {
+      btnManager.updateBtn(`Unlock ${tokenIn.info?.symbol}`, false);
+    } else {
+      btnManager.updateBtn('Stake', false, btnProps);
+    }
+  }, [
+    accountId,
+    chainId,
+    tokenOut,
+    tokenIn.value,
+    balanceTokenIn,
+
+    tokenIn.info,
+    lastTx?.status,
+    path?.length,
+    path,
+    preTxDetails?.status,
+    accountId,
+    executeStake,
+    executeUnlock,
+    showConfirmTxDetails,
+    approving,
+  ]);
 
   useEffect(() => {
     console.log('global values', GlobalValues);
   }, [GlobalValues]);
+
+  const getTotalDelegationHandler = async () => {
+    console.log('to get total delegation')
+  };
+  const getUserDelegationHandler = async () => {
+    console.log('to get user delegation')
+
+  };
+  const delegateAndAllocateHandler = async () => {
+    console.log('to delegate')
+
+  };
+
+
+
+  const vpPercentageChangeHandler = (value: number) => {
+    setPercentageVP(value);
+    setValueVP(Number(((value / 100) * totalVpBalance).toFixed(2)));
+  };
 
   //   FOR SLIDER
   const marks = {
@@ -87,40 +187,53 @@ export default function VPmodal() {
                 max={maxStakeAmt}
                 otherToken={''}
                 pos={1}
-                onPerc={(num: string) => {}}
+                onPerc={(num: number) => {
+                  vpPercentageChangeHandler(num);
+                }}
                 setToken={() => {}}
                 token={tokenIn}
-                updateNum={(num: string) => {}}
-                onMax={() => {}}
+                updateNum={(num: number) => {
+                  setPercentageVP(Number(((num / totalVpBalance) * 100).toFixed(2)));
+                  setValueVP(num);
+                }}
+                percentValue={percentageVP}
+                valueVP={valueVP}
+                totalVpBalance={totalVpBalance}
+                onMax={() => {
+                  setValueVP(totalVpBalance);
+                  setPercentageVP(100);
+                }}
               />
               <div className="range-slider">
                 <Slider
-                  onChange={(val) => {
-                    console.log(val);
-                  }}
+                  onChange={accountId && vpPercentageChangeHandler}
                   handleStyle={handleStyle}
                   railStyle={railStyle}
                   dotStyle={dotStyle}
                   activeDotStyle={activeDotStyle}
                   marks={marks}
+                  value={percentageVP}
                 />
               </div>
 
-              <div className="rounded-lg border allocation-holder  px-4 py-2  flex justify-around ">
-                <div className="flex flex-col text-center">
-                  <h5>Total VP Allocation</h5>
-                  <span>67</span>
-                </div>
-                <div className="flex flex-col text-center">
-                  <h5>Your VP Allocation</h5>
-                  <small className="bg-neutral-300">67</small>
-                </div>
-              </div>
+              <AllocationInfo
+                rightHeading={'Your VP Allocation'}
+                leftHeading={'Total VP Allocation'}
+                rightValue={100}
+                leftVaue={50}
+              />
 
               {/* <PositionBox loading={loading} setLoading={setLoading} /> */}
               <div className="flex mt-3">
-                <button id="executeStake" onClick={() => {}} className="txButton" disabled={false}>
-                  {'Delegate and Allocate'}
+                <button
+                  id="executeStake"
+                  disabled={btnProps.disabled}
+                  onClick={() => {
+                    !accountId && handleConnect();
+                  }}
+                  className="txButton"
+                >
+                  {btnProps.text}
                 </button>
                 {/* <TxSettings /> */}
               </div>
