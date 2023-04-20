@@ -60,7 +60,7 @@ export default function VPmodal() {
     if (!accountId) {
       btnManager.updateBtn();
     } else if (!tokenOut.info) {
-      btnManager.updateBtn('Delegate And Allocate', true);
+      btnManager.updateBtn('Delegate And Allocate', false);
     } else if (!tokenIn.info) {
       btnManager.updateBtn('Select a Token', true);
     } else if (path && path?.length === 0) {
@@ -206,7 +206,7 @@ export default function VPmodal() {
               />
               <div className="range-slider">
                 <Slider
-                  onChange={accountId && vpPercentageChangeHandler}
+                  onChange={tokenIn.info && vpPercentageChangeHandler}
                   handleStyle={handleStyle}
                   railStyle={railStyle}
                   dotStyle={dotStyle}

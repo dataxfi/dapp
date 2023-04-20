@@ -20,7 +20,7 @@ export default function TokenSelect({
   max,
   percentValue,
   valueVP,
-  totalVpBalance
+  totalVpBalance,
 }: {
   setToken: React.Dispatch<React.SetStateAction<IToken>>;
   token: IToken;
@@ -33,7 +33,6 @@ export default function TokenSelect({
   percentValue?: number;
   valueVP?: number;
   totalVpBalance?: number;
-  
 }) {
   const {
     accountId,
@@ -61,12 +60,13 @@ export default function TokenSelect({
       path.length > 0 &&
       accountId &&
       max.gt(0) &&
+      token.info &&
       balanceTokenIn.gt(0) &&
       (token.info?.address.toLowerCase() === path[0].toLowerCase() ||
         token.info?.address.toLowerCase() === accountId?.toLowerCase())
     ) {
       setEndabled(true);
-    } else if (location === '/delegate') {
+    } else if (location === '/delegate' && token.info) {
       setEndabled(true);
     } else {
       // alert('falseing');
@@ -135,7 +135,7 @@ export default function TokenSelect({
               </span>
             ) : (
               <p id="selectTokenBtn" className="text-xs btn-dark rounded-full mt-1">
-               {location==='/delegate'? 'Select Asset':'Select Token'}
+                {'Select Asset'}
               </p>
             )}
           </div>
@@ -176,7 +176,7 @@ export default function TokenSelect({
             <div className="h-full w-full rounded-lg bg-opacity-100 text-3xl p-1 flex-col items-center">
               {token?.balance ? (
                 <p id={`token${pos}-balance`} className="text-sm text-gray-400 whitespace-nowrap text-right">
-                  Balance:{' '}
+                  {location === '/delegate' ? 'VP Balance' : 'Balance'}:{' '}
                   {location === '/stake/remove' ? balanceTokenOut.dp(3).toString() : balanceTokenIn.dp(5).toString()}
                 </p>
               ) : (
@@ -199,8 +199,7 @@ export default function TokenSelect({
                     if (enabled && inputValue <= totalVpBalance) {
                       updateNum(inputValue);
                     } else {
-                      e.preventDefault()
-
+                      // e.preventDefault()
                       updateNum(totalVpBalance);
                     }
                   }}
@@ -238,7 +237,7 @@ export default function TokenSelect({
                         className={'btn-dark btn-sm rounded-full text-xs'}
                         disabled={!enabled}
                       >
-                        Max 
+                        Max
                       </button>
                       <DebounceInput
                         id={`token${pos}-perc-input`}

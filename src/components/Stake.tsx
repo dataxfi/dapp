@@ -19,6 +19,7 @@ import { IStakeInfo } from '@dataxfi/datax.js/dist/@types/stake';
 import { getToken } from '../hooks/useTokenList';
 import { calcSlippage, to5, BtnManager, INITIAL_BUTTON_STATE, bn } from '../utils/utils';
 import { ITokenInfo } from '@dataxfi/datax.js';
+import AllocationInfo from './AllocationsInfo';
 
 export default function Stake() {
   const {
@@ -140,9 +141,9 @@ export default function Stake() {
     if (!accountId) {
       btnManager.updateBtn();
     } else if (!tokenOut.info) {
-      btnManager.updateBtn('Select a Pool', true);
+      btnManager.updateBtn('Stake', true);
     } else if (!tokenIn.info) {
-      btnManager.updateBtn('Select a Token', true);
+      btnManager.updateBtn('Stake', false);
     } else if (path && path?.length === 0) {
       btnManager.updateBtn('Routing...', true);
     } else if (!path) {
@@ -365,7 +366,7 @@ export default function Stake() {
                 token={tokenOut}
                 updateNum={() => {}}
               />
-              <div className="px-4 relative mt-6 mb-10">
+              {/* <div className="px-4 relative mt-6 mb-10">
                 <div className="rounded-full border-black border-4 absolute -top-7 bg-trade-darkBlue w-12 h-12 flex items-center justify-center swap-center">
                   {loading ? (
                     <MoonLoader size={25} color={'white'} />
@@ -373,8 +374,8 @@ export default function Stake() {
                     <AiOutlinePlus size="30" className="text-gray-300" />
                   )}
                 </div>
-              </div>
-              <TokenSelect
+              </div> */}
+              {/* <TokenSelect
                 max={maxStakeAmt}
                 otherToken={''}
                 pos={1}
@@ -388,8 +389,18 @@ export default function Stake() {
                   updateNum(num);
                 }}
                 onMax={setMaxStake}
-              />
-              <PositionBox loading={loading} setLoading={setLoading} />
+              /> */}
+              {/* <PositionBox loading={loading} setLoading={setLoading} /> */}
+              <div
+                className='pt-2'
+              >
+                <AllocationInfo
+                  leftHeading={'Total Allocation'}
+                  rightHeading={'Your Allocation'}
+                  rightValue={0}
+                  leftVaue={0}
+                />
+              </div>
               <div className="flex mt-3">
                 <button
                   id="executeStake"
@@ -399,7 +410,7 @@ export default function Stake() {
                 >
                   {btnProps.text}
                 </button>
-                <TxSettings />
+                {/* <TxSettings /> */}
               </div>
             </div>
             <div className="flex justify-between">
