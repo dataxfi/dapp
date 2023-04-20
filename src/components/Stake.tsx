@@ -140,27 +140,30 @@ export default function Stake() {
     const btnManager = new BtnManager(setBtnProps);
     if (!accountId) {
       btnManager.updateBtn();
-    } else if (!tokenOut.info) {
+    } else if (accountId && !tokenIn.info) {
       btnManager.updateBtn('Stake', true);
-    } else if (!tokenIn.info) {
+    } else if (accountId && tokenIn.info) {
       btnManager.updateBtn('Stake', false);
-    } else if (path && path?.length === 0) {
-      btnManager.updateBtn('Routing...', true);
-    } else if (!path) {
-      btnManager.updateBtn('Insufficient Liquidity', true);
-    } else if (!tokenIn.value || tokenIn.value.eq(0)) {
-      btnManager.updateBtn('Enter Stake Amount', true);
-    } else if (balanceTokenIn?.eq(0) || (balanceTokenIn && tokenIn.value.gt(balanceTokenIn))) {
-      btnManager.updateBtn(`Not Enough ${tokenIn.info?.symbol} Balance`, true);
-    } else if (lastTx?.status === 'Pending' && (executeStake || executeUnlock)) {
-      btnManager.updateBtn('Processing Transaction...', true);
-    } else if (minStakeAmt && tokenIn.value.isLessThan(minStakeAmt)) {
-      btnManager.updateBtn(`Minimum Stake is ${minStakeAmt} ${tokenIn.info?.symbol}`, true);
-    } else if (tokenIn.allowance?.lt(tokenIn.value)) {
-      btnManager.updateBtn(`Unlock ${tokenIn.info?.symbol}`, false);
-    } else {
-      btnManager.updateBtn('Stake', false, btnProps);
     }
+    // } else if (!tokenIn.info) {
+    //   btnManager.updateBtn('Stake', false);
+    // } else if (path && path?.length === 0) {
+    //   btnManager.updateBtn('Routing...', true);
+    // } else if (!path) {
+    //   btnManager.updateBtn('Insufficient Liquidity', true);
+    // } else if (!tokenIn.value || tokenIn.value.eq(0)) {
+    //   btnManager.updateBtn('Enter Stake Amount', true);
+    // } else if (balanceTokenIn?.eq(0) || (balanceTokenIn && tokenIn.value.gt(balanceTokenIn))) {
+    //   btnManager.updateBtn(`Not Enough ${tokenIn.info?.symbol} Balance`, true);
+    // } else if (lastTx?.status === 'Pending' && (executeStake || executeUnlock)) {
+    //   btnManager.updateBtn('Processing Transaction...', true);
+    // } else if (minStakeAmt && tokenIn.value.isLessThan(minStakeAmt)) {
+    //   btnManager.updateBtn(`Minimum Stake is ${minStakeAmt} ${tokenIn.info?.symbol}`, true);
+    // } else if (tokenIn.allowance?.lt(tokenIn.value)) {
+    //   btnManager.updateBtn(`Unlock ${tokenIn.info?.symbol}`, false);
+    // } else {
+    //   btnManager.updateBtn('Stake', false, btnProps);
+    // }
   }, [
     accountId,
     chainId,
@@ -391,9 +394,7 @@ export default function Stake() {
                 onMax={setMaxStake}
               /> */}
               {/* <PositionBox loading={loading} setLoading={setLoading} /> */}
-              <div
-                className='pt-2'
-              >
+              <div className="pt-2">
                 <AllocationInfo
                   leftHeading={'Total Allocation'}
                   rightHeading={'Your Allocation'}
