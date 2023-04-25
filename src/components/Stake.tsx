@@ -117,7 +117,7 @@ export default function Stake() {
       getMaxAndAllowance();
     }
   }, [tokenIn.info?.address, tokenOut.info?.address, tokensCleared, accountId, path?.length, balanceTokenIn]);
-
+   console.log(tokenIn,tokenOut,"tokenIninfo")
   useEffect(() => {
     if (tokenIn.info && trade && accountId) {
       const tokenAddress =
@@ -140,10 +140,10 @@ export default function Stake() {
     const btnManager = new BtnManager(setBtnProps);
     if (!accountId) {
       btnManager.updateBtn();
-    } else if (accountId && !tokenIn.info) {
-      btnManager.updateBtn('Stake', true);
-    } else if (accountId && tokenIn.info) {
-      btnManager.updateBtn('Stake', false);
+    } else if (accountId && !tokenOut.info) {
+      btnManager.updateBtn('Stake', true, btnProps);
+    } else if (accountId && tokenOut.info) {
+      btnManager.updateBtn('Stake', false, btnProps);
     }
     // } else if (!tokenIn.info) {
     //   btnManager.updateBtn('Stake', false);
@@ -162,7 +162,7 @@ export default function Stake() {
     // } else if (tokenIn.allowance?.lt(tokenIn.value)) {
     //   btnManager.updateBtn(`Unlock ${tokenIn.info?.symbol}`, false);
     // } else {
-    //   btnManager.updateBtn('Stake', false, btnProps);
+    //   btnManager.updateBtn('Stake', false, c);
     // }
   }, [
     accountId,
@@ -251,7 +251,7 @@ export default function Stake() {
         uints: [tokenIn.value.toString(), spotSwapFee, minAmountOut.toString()],
       };
 
-      console.log(stakeInfo);
+      // console.log(stakeInfo);
 
       const txReceipt =
         tokenIn.info?.address === accountId

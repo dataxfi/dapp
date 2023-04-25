@@ -81,6 +81,8 @@ export default function useWatchLocation() {
   useEffect(() => {
     if (currentLocation.pathname !== lastLocation.current.pathname) {
       tokensCleared.current = false;
+      setTokenIn(INITIAL_TOKEN_STATE);
+      setTokenOut(INITIAL_TOKEN_STATE);
     }
 
     if (currentLocation.pathname === '/trade') {

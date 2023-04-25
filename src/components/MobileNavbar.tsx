@@ -79,7 +79,7 @@ const MobileNavbar = ({
         {links.map((link, idx) => {
           return (
             <Link onClick={() => toggleMenu(false)} to={link.link} className="hm-link product" key={`link${idx}`}>
-              <div key={idx} className="py-1.5 px-8 hover:bg-opacity-100">
+              <div key={idx} className="px-8 hover:bg-opacity-100">
                 {link.name}
               </div>
             </Link>

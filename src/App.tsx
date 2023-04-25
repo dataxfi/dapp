@@ -19,6 +19,7 @@ import Footer from './components/Footer';
 import Stake from './components/Stake';
 import Swap from './components/Swap';
 import Delegate from './components/Delegate';
+import Assets from './components/Assets';
 
 BigNumber.config({ DECIMAL_PLACES: 18, ROUNDING_MODE: BigNumber.ROUND_DOWN, EXPONENTIAL_AT: 30 });
 
@@ -36,6 +37,7 @@ function App() {
       initializeGA();
     }
   }, [cookiesAllowed]);
+
 
   useEffect(() => {
     document.getElementById('loadText')?.remove();
@@ -68,6 +70,7 @@ function App() {
                 <Route path="/trade" element={<Swap />} />
                 <Route path="/stake" element={<Stake />} />
                 <Route path="/delegate" element={<Delegate />} />
+                <Route path="/assets" element={<Assets />} />
                 <Route path="/stake/remove" element={<Unstake />} />
                 <Route path="/stake/list" element={<LiquidityPosition />} />
               </Routes>

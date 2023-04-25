@@ -8,6 +8,7 @@ import 'rc-slider/assets/index.css';
 import AllocationInfo from './AllocationsInfo';
 import { BtnManager, INITIAL_BUTTON_STATE } from '../utils/utils';
 import { ITxDetails, IBtnProps, IPoolMetaData } from '../@types/types';
+import useAutoLoadToken from '../hooks/useAutoLoadToken';
 
 export default function VPmodal() {
   const GlobalValues = useContext(GlobalContext);
@@ -16,7 +17,7 @@ export default function VPmodal() {
   const [totalVpBalance, setTotalBalance] = useState(5000);
   const [percentageVP, setPercentageVP] = useState(0);
   const [valueVP, setValueVP] = useState(0);
-
+  useAutoLoadToken();
   const {
     accountId,
     chainId,
@@ -86,7 +87,6 @@ export default function VPmodal() {
     tokenOut,
     tokenIn.value,
     balanceTokenIn,
-
     tokenIn.info,
     lastTx?.status,
     path?.length,
@@ -100,7 +100,7 @@ export default function VPmodal() {
   ]);
 
   useEffect(() => {
-    console.log('global values', GlobalValues);
+    // console.log('global values', GlobalValues);
   }, [GlobalValues]);
 
   const getTotalDelegationHandler = async () => {
@@ -117,7 +117,7 @@ export default function VPmodal() {
     setPercentageVP(value);
     setValueVP(Number(((value / 100) * totalVpBalance).toFixed(2)));
   };
-
+  console.log(tokenIn,tokenOut,"tokenIninfo in delegate")
   //   FOR SLIDER
   const marks = {
     0: {
@@ -188,7 +188,7 @@ export default function VPmodal() {
                 onPerc={(num: number) => {
                   vpPercentageChangeHandler(num);
                 }}
-                setToken={() => {}}
+                setToken={setTokenIn}
                 token={tokenIn}
                 updateNum={(num: number) => {
                   setPercentageVP(Number(((num / totalVpBalance) * 100).toFixed(2)));

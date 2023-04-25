@@ -8,7 +8,6 @@ export default function TokenModalItem({ token, onClick }: { token: ITokenInfo; 
   const { tokenIn, tokenOut } = useContext(GlobalContext);
   const [imgSrc, setImgSrc] = useState(token.logoURI);
   useTokenImgSrc(setImgSrc, token);
-
   return token.symbol === tokenIn.info?.symbol || token.symbol === tokenOut.info?.symbol ? (
     <></>
   ) : (

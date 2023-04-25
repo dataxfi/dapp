@@ -128,7 +128,7 @@ async function getERC20TokenList(
       token.address.toLowerCase()
     );
 
-    noPaths.push("0x8d520c8E66091cfD6743fe37Fbe3A09505616C4b".toLowerCase())
+    noPaths.push('0x8d520c8E66091cfD6743fe37Fbe3A09505616C4b'.toLowerCase());
     // console.log(noPaths);
 
     const withoutNoPaths = erc20list.filter((token: ITokenInfo) => {

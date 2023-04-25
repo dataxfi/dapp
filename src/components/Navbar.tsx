@@ -8,6 +8,7 @@ const text = {
   T_SWAP: 'Trade',
   T_STAKE: 'Stake',
   T_DELEGATE: 'Delegate',
+  T_ASSETS: 'Assets',
   T_CONNECT_WALLET: 'Connect to a wallet',
 };
 
@@ -15,6 +16,7 @@ const Navbar = () => {
   const walletText = text.T_CONNECT_WALLET;
   const links = [
     // { name: text.T_SWAP, link: '/trade' },
+    { name: text.T_ASSETS, link: '/assets' },
     { name: text.T_STAKE, link: '/stake' },
     { name: text.T_DELEGATE, link: '/delegate' },
   ];

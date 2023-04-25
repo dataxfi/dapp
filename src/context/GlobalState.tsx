@@ -114,8 +114,8 @@ export const GlobalProvider = ({ children }: { children: PropsWithChildren<{}> }
   const [swapFee, setSwapFee] = useState<string>('0');
   const [afterSlippage, setAfterSlippage] = useState<BigNumber>(bn(0));
   const [slippage, setSlippage] = useState<BigNumber>(new BigNumber(1));
-  const [paths, setPaths] = useState<IPathData| null>(null);
-  const [path, setPath] = useState<string[]>()
+  const [paths, setPaths] = useState<IPathData | null>(null);
+  const [path, setPath] = useState<string[]>();
   const [meta, setMeta] = useState<string[]>();
 
   // user pool information states
@@ -132,7 +132,7 @@ export const GlobalProvider = ({ children }: { children: PropsWithChildren<{}> }
   const [exactToken, setExactToken] = useState<1 | 2>(1);
   const [balanceTokenIn, setBalanceTokenIn] = useState<BigNumber>(bn(0));
   const [balanceTokenOut, setBalanceTokenOut] = useState<BigNumber>(bn(0));
-  const [unstakeAllowance, setUnstakeAllowance] = useState<BigNumber>(bn(0))
+  const [unstakeAllowance, setUnstakeAllowance] = useState<BigNumber>(bn(0));
 
   // selected token states
   const [tokenIn, setTokenIn] = useState<IToken>(INITIAL_TOKEN_STATE);
@@ -157,6 +157,14 @@ export const GlobalProvider = ({ children }: { children: PropsWithChildren<{}> }
     const bgPref = localStorage.getItem('bgPref');
     if (bgPref) setBgOff(JSON.parse(bgPref));
   }, []);
+
+  useEffect(() => {
+    console.log('--->tokenIn', tokenIn);
+  }, [tokenIn]);
+
+  useEffect(() => {
+    console.log('--->tokenOut', tokenOut);
+  }, [tokenOut]);
 
   // intitialize web3modal to use to connect to provider
   useEffect(() => {
@@ -283,10 +291,10 @@ export const GlobalProvider = ({ children }: { children: PropsWithChildren<{}> }
 
       isSupportedChain(config, String(_chainId), accounts[0] ? accounts[0] : '');
 
-      const refAddress = process.env.REACT_APP_REF_ADDRESS
-      const refFee = process.env.REACT_APP_REF_FEE
-      console.log("Ref Address: ", refAddress)
-      console.log("Ref Fee: ", refFee)
+      const refAddress = process.env.REACT_APP_REF_ADDRESS;
+      const refFee = process.env.REACT_APP_REF_FEE;
+      console.log('Ref Address: ', refAddress);
+      console.log('Ref Fee: ', refFee);
       setRefAddress(refAddress);
       setSpotSwapFee(refFee);
       setListeners(provider, web3);
@@ -410,7 +418,7 @@ export const GlobalProvider = ({ children }: { children: PropsWithChildren<{}> }
         paths,
         setPaths,
         spotSwapFee,
-        path, 
+        path,
         setPath,
         baseMinExchange,
         handleSignature,
@@ -503,10 +511,10 @@ export const GlobalProvider = ({ children }: { children: PropsWithChildren<{}> }
         setMeta,
         balanceTokenIn,
         setBalanceTokenIn,
-        setBalanceTokenOut, 
-        balanceTokenOut, 
-        unstakeAllowance, 
-        setUnstakeAllowance
+        setBalanceTokenOut,
+        balanceTokenOut,
+        unstakeAllowance,
+        setUnstakeAllowance,
       }}
     >
       <>{children}</>
